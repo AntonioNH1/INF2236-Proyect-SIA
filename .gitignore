@@ -1,0 +1,28 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+
+# NetBeans
+nb-configuration.xml
+nbactions.xml
+nbactions-*.xml
+/nbproject/private/
+
+# IntelliJ / Eclipse
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# General
+*.class
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
