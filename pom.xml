@@ -8,7 +8,7 @@
 
     <!-- Identificadores de tu proyecto -->
     <groupId>com.mycompany</groupId>
-    <artifactId>ProyectoSIA</artifactId>
+    <artifactId>Sistema_de_asistencia</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -19,7 +19,7 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <!-- Clase principal (con método main) -->
-        <exec.mainClass>com.mycompany.proyectosia.ProyectoSIA</exec.mainClass>
+        <exec.mainClass>com.mycompany.proyectosia.Sistema_de_asistencia</exec.mainClass>
     </properties>
 
     <dependencies>
