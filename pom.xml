@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Identificadores de tu proyecto -->
-    <groupId>com.mycompany</groupId>
+    <groupId>com.mycompany.proyectosia</groupId>
     <artifactId>Sistema_de_asistencia</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
