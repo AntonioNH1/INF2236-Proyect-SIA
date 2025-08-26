@@ -24,8 +24,7 @@ public class Alumno {
 
     public String getCurso() { return curso; }
     public void setCurso(String curso) { this.curso = curso; }
-
-    // Puedes borrar este método si no quieres usar toString
+    
     @Override
     public String toString() {
         return "Alumno{nombre='" + nombre + "', curso='" + curso + "'}";
