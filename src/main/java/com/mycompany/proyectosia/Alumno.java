@@ -8,8 +8,6 @@ package com.mycompany.proyectosia;
  *
  * @author anton
  */
-package com.mycompany.proyectosia;
-
 public class Alumno {
     private String nombre;
     private String curso;
