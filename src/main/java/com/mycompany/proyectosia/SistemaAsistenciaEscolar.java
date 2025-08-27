@@ -8,6 +8,8 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  *
@@ -19,12 +21,20 @@ public class SistemaAsistenciaEscolar {
     private ArrayList listaAlumnos;
 
     private BufferedReader lectorConsola;
+    
+    //Clave: RUT, Valor: Alumno
+    private Map mapaAlumnos;
 
     public SistemaAsistenciaEscolar(){
         this.listaAlumnos = new ArrayList();
         this.lectorConsola = new BufferedReader(new InputStreamReader(System.in));
+        this.mapaAlumnos = new HashMap();
     }
     
+    private Alumno obtenerAlumnoPorRut(String rut) {
+        return (Alumno) this.mapaAlumnos.get(rut);
+    }
+
     
     public void iniciar() throws IOException {
         int opcionMenu;
@@ -33,7 +43,8 @@ public class SistemaAsistenciaEscolar {
             System.out.println("\n=== Sistema de Asistencia ===");
             System.out.println("1. Insertar alumno");
             System.out.println("2. Mostrar alumnos");
-            System.out.println("3. Salir");
+            System.out.println("3. Buscar alumnos por RUT");
+            System.out.println("4. Salir");
             System.out.print("Elige una opcion: ");
 
             opcionMenu = leerEntero();
@@ -46,6 +57,9 @@ public class SistemaAsistenciaEscolar {
                     //mostrarAlumnos();
                     break;
                 case 3:
+                    this.buscarAlumnoPorRut();
+                    break;
+                case 4:
                     System.out.println("Saliendo del sistema...");
                     break;
                 default:
@@ -77,6 +91,18 @@ public class SistemaAsistenciaEscolar {
         String nombreAlumno = nuevoAlumno.getNombre();
         System.out.println("El alumno " + nombreAlumno + " se ha creado con exito.");
     
+    }
+    
+    private void buscarAlumnoPorRut() throws IOException {
+        System.out.println("Ingrese RUT a buscar");
+        String rut = this.lectorConsola.readLine();
+        
+        Alumno alumno = obtenerAlumnoPorRut(rut);
+        if (alumno == null) {
+            System.out.println("No existe el alumno con ese RUT");
+            return;
+        }
+        System.out.println("Alumno: " + alumno.getNombre() + "| Curso: " + alumno.getCurso() + "| RUT: " + alumno.getRut());
     }
     
     private boolean existeAlumno(String nombre, String rut){
