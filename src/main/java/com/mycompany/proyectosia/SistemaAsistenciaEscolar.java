@@ -1,31 +1,34 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
 package com.mycompany.proyectosia;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author anton
+ */
 public class SistemaAsistenciaEscolar {
 
-    // Atributos privados 
-    private ArrayList listaAlumnos;          
+    // le vamos a hacer el casting manualmente
+    private ArrayList listaAlumnos;
+
     private BufferedReader lectorConsola;
 
-    // Constructor
-    public SistemaAsistenciaEscolar() {
+    public SistemaAsistenciaEscolar(){
         this.listaAlumnos = new ArrayList();
         this.lectorConsola = new BufferedReader(new InputStreamReader(System.in));
     }
-
-    // Getters/Setters 
-    public ArrayList getListaAlumnos() { return listaAlumnos; }
-    public void setListaAlumnos(ArrayList listaAlumnos) { this.listaAlumnos = listaAlumnos; }
-    public BufferedReader getLectorConsola() { return lectorConsola; }
-    public void setLectorConsola(BufferedReader lectorConsola) { this.lectorConsola = lectorConsola; }
-
-    // Menú principal 
+    
+    
     public void iniciar() throws IOException {
         int opcionMenu;
+
         do {
             System.out.println("\n=== Sistema de Asistencia ===");
             System.out.println("1. Insertar alumno");
@@ -33,14 +36,14 @@ public class SistemaAsistenciaEscolar {
             System.out.println("3. Salir");
             System.out.print("Elige una opcion: ");
 
-            opcionMenu = leerEntero(); // <- ahora validado
+            opcionMenu = leerEntero();
 
             switch (opcionMenu) {
                 case 1:
                     this.insertarAlumno();
                     break;
                 case 2:
-                    this.mostrarAlumnos();
+                    //mostrarAlumnos();
                     break;
                 case 3:
                     System.out.println("Saliendo del sistema...");
@@ -50,75 +53,99 @@ public class SistemaAsistenciaEscolar {
             }
         } while (opcionMenu != 3);
     }
-
-    // Inserción: aquí se leen STRINGS (nombre/curso)
-    private void insertarAlumno() throws IOException {
-        System.out.println("\n--- Nuevo Alumno ---");
+    
+    private void insertarAlumno() throws IOException{
+        System.out.println("\n --- Nuevo Alumno ---");
         System.out.print("Ingrese nombre completo del nuevo alumno: ");
         String nombre = this.lectorConsola.readLine();
-
+        
         System.out.print("Ingrese curso del nuevo alumno: ");
         String curso = this.lectorConsola.readLine();
-
-        if (nombre == null || nombre.trim().isEmpty()) {
-            System.out.println("Nombre vacío. Operacion cancelada.");
+        
+        System.out.print("Ingrese rut del nuevo alumno: ");
+        String rut = this.lectorConsola.readLine();
+        
+        if(this.existeAlumno(nombre, rut)){
+            System.out.println("El Alumno ingresado ya existe en el sistema");
             return;
         }
-        if (curso == null || curso.trim().isEmpty()) {
-            System.out.println("Curso vacío. Operacion cancelada.");
-            return;
-        }
-
-        if (this.existeAlumno(nombre.trim())) {
-            System.out.println("El alumno ingresado ya existe en el sistema.");
-            return;
-        }
-
-        Alumno nuevoAlumno = new Alumno(nombre.trim(), curso.trim());
+        
+        Alumno nuevoAlumno = new Alumno(nombre, curso, rut);
+        
         this.listaAlumnos.add(nuevoAlumno);
-        System.out.println("Alumno agregado: " + nuevoAlumno.getNombre());
+        
+        String nombreAlumno = nuevoAlumno.getNombre();
+        System.out.println("El alumno " + nombreAlumno + " se ha creado con exito.");
+    
     }
-
-    private void mostrarAlumnos() {
-        System.out.println("\n--- Lista de Alumnos ---");
-        if (this.listaAlumnos.isEmpty()) {
-            System.out.println("No hay alumnos registrados.");
-        } else {
-            for (Object obj : this.listaAlumnos) {
-                Alumno alumno = (Alumno) obj; // casting manual desde ArrayList raw
-                System.out.println("Nombre: " + alumno.getNombre() + ", Curso: " + alumno.getCurso());
-            }
-        }
-    }
-
-    private boolean existeAlumno(String nombre) {
-        for (Object obj : this.listaAlumnos) {
-            Alumno a = (Alumno) obj;
-            if (nombre.equalsIgnoreCase(a.getNombre())) {
+    
+    private boolean existeAlumno(String nombre, String rut){
+        for(Object objetoAlumno : this.listaAlumnos){
+            Alumno alumnoLista = (Alumno)objetoAlumno;
+            if(nombre.equals(alumnoLista.getNombre()) && rut.equals(alumnoLista.getRut())){
                 return true;
             }
         }
+        
         return false;
     }
+    
+    private void registrarAsistenciaDiaria() throws IOException {
+        
+        System.out.println("\n--- Registro de Asistencia Diario ---");
 
-    // Lector de enteros robusto para el MENÚ
-    private int leerEntero() throws IOException {
-        while (true) {
-            String linea = this.lectorConsola.readLine();
-            if (linea == null) {
-                // EOF (Ctrl+D/Ctrl+Z): salir del sistema
-                return 3; // opción Salir
-            }
-            linea = linea.trim();
-            if (linea.isEmpty()) {
-                System.out.print("No ingresaste nada. Intenta de nuevo: ");
-                continue;
-            }
-            try {
-                return Integer.parseInt(linea);
-            } catch (NumberFormatException e) {
-                System.out.print("Debes ingresar un numero. Intenta de nuevo: ");
+        LocalDate fechaDeAsistencia = null;
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        // pedida de fecha
+        while (fechaDeAsistencia == null) {
+            System.out.print("Ingrese la fecha para el registro (formato dd/MM/yyyy): ");
+            String fechaTexto = this.lectorConsola.readLine();
+
+            fechaDeAsistencia = LocalDate.parse(fechaTexto, formatoFecha);
+        }
+
+        // Pedida de curso
+        System.out.print("Ingrese el curso para pasar lista (ej: Primero basico): ");
+        String cursoSeleccionado = this.lectorConsola.readLine();
+
+        System.out.println("\nPasando lista para el curso '" + cursoSeleccionado + "' en la fecha " + fechaDeAsistencia.format(formatoFecha));
+
+        for (Object objAlumno : this.listaAlumnos) {
+            Alumno alumno = (Alumno) objAlumno;
+
+            // agrupar por curso
+            if (alumno.getCurso().equalsIgnoreCase(cursoSeleccionado)) {
+                String estadoInput;
+                Asistencia.EstadoAsistencia estadoFinal = null;
+
+                // se pregunta la asistencia por cada alumno del curso
+                while (estadoFinal == null) {
+                    System.out.print("Estado de " + alumno.getNombre() + " (P=Presente, A=Ausente): ");
+                    estadoInput = this.lectorConsola.readLine();
+
+                    if (estadoInput.equalsIgnoreCase("P")) {
+                        estadoFinal = Asistencia.EstadoAsistencia.PRESENTE;
+                    } else if (estadoInput.equalsIgnoreCase("A")) {
+                        estadoFinal = Asistencia.EstadoAsistencia.AUSENTE;
+                    } else {
+                        System.err.println("Opción inválida.");
+                    }
+                }
+
+                // Creamos el nuevo objeto de asistencia y se lo añadimos al historial del alumno.
+                Asistencia nuevoRegistro = new Asistencia(fechaDeAsistencia, estadoFinal);
+                alumno.registrarAsistencia(nuevoRegistro);
             }
         }
     }
+    // Utilidades
+    
+    // lector enteros(¿estamos autorizados para usar try/catch? esto es materia de exceptions)
+    private int leerEntero()throws IOException{
+        int opcion = Integer.parseInt(this.lectorConsola.readLine());
+        return opcion;
+    }
 }
+    
+    
