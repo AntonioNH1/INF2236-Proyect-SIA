@@ -10,7 +10,7 @@ import java.util.Set;
 public class Alumno {
     private String nombre;
     private String curso;
-    private String rut; // rut esencial para creacion de mapa
+    private String rut; // rut esencial para creacion del mapa hash
     private ArrayList listaAsistencia;
     
     private static Set CURSOSVALIDOS = Set.of(
@@ -20,7 +20,7 @@ public class Alumno {
     
     
     
-    // Constructor (validacion a traves de setter)
+    // Constructor (validacion a traves de setter, ya que aun no nos enseñan a crear excepciones)
     public Alumno(String nombre, String curso, String rut){
         this.listaAsistencia = new ArrayList();
         setNombre(nombre);
@@ -40,7 +40,7 @@ public class Alumno {
     }
     
     public void setCurso(String curso){
-        if(curso != null || !CURSOSVALIDOS.contains(curso)){
+        if(curso == null || !CURSOSVALIDOS.contains(curso)){
             System.out.println("curso ingresado no valido.");
             return;
         }
@@ -60,11 +60,11 @@ public class Alumno {
     public String getCurso(){
         return curso;
     }
-
+    // podriamos agregar funciones que retornen el nombre pero formateado (primera letra en mayuscula)
     public String getNombre(){
         return nombre;
     }
-    
+    // podriamos agregar funciones que retornen el rut pero formateado (con el guion)
     public String getRut(){
         return rut;
     }
@@ -73,4 +73,7 @@ public class Alumno {
     public void registrarAsistencia(Asistencia nuevaAsistencia){
         this.listaAsistencia.add(nuevaAsistencia);
     }
+    
+    
+    
 }
