@@ -28,4 +28,5 @@ public class Asistencia
         JUSTIFICADO
     }
     
+    
 }
