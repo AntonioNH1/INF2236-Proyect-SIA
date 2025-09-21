@@ -1,18 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.proyectosia;
+
+import com.mycompany.proyectosia.controlador.SistemaAsistenciaEscolar;
+import java.io.IOException;
 
 /**
  *
- * @author anton
+ * @author geoff
  */
-
-import java.io.IOException;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String arg [])throws IOException{
         SistemaAsistenciaEscolar sistema = new SistemaAsistenciaEscolar();
         sistema.iniciar();
     }
