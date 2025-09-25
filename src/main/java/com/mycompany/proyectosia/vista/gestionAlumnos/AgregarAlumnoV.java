@@ -30,6 +30,14 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButtonAgregarAlumnoVCancelar = new javax.swing.JButton();
+        jTextFieldAgregarAlumnoVNombre = new javax.swing.JTextField();
+        jTextFieldAgregarAlumnoVCurso = new javax.swing.JTextField();
+        jTextFieldAgregarAlumnoVRut = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButtonAgregarAlumnoVCrear = new javax.swing.JButton();
+        jLabelAgregarAlumnoVExito = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,6 +50,30 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldAgregarAlumnoVNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldAgregarAlumnoVNombreActionPerformed(evt);
+            }
+        });
+
+        jTextFieldAgregarAlumnoVRut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldAgregarAlumnoVRutActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("nombre: ");
+
+        jLabel3.setText("curso:");
+
+        jLabel4.setText("rut:");
+
+        jButtonAgregarAlumnoVCrear.setBackground(new java.awt.Color(204, 204, 204));
+        jButtonAgregarAlumnoVCrear.setText("Crear alumno");
+        jButtonAgregarAlumnoVCrear.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabelAgregarAlumnoVExito.setText("Alumno agregado con éxito !!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -52,7 +84,21 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
                 .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
                 .addGap(168, 168, 168)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButtonAgregarAlumnoVCrear)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldAgregarAlumnoVRut, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                .addComponent(jTextFieldAgregarAlumnoVCurso)
+                                .addComponent(jTextFieldAgregarAlumnoVNombre)))
+                        .addComponent(jLabelAgregarAlumnoVExito, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(171, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -60,7 +106,23 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
+                .addGap(116, 116, 116)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldAgregarAlumnoVNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldAgregarAlumnoVCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldAgregarAlumnoVRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonAgregarAlumnoVCrear)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jLabelAgregarAlumnoVExito)
+                .addGap(2, 2, 2)
                 .addComponent(jButtonAgregarAlumnoVCancelar)
                 .addGap(35, 35, 35))
         );
@@ -71,14 +133,54 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
     private void jButtonAgregarAlumnoVCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarAlumnoVCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAgregarAlumnoVCancelarActionPerformed
+
+    private void jTextFieldAgregarAlumnoVRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAgregarAlumnoVRutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAgregarAlumnoVRutActionPerformed
+
+    private void jTextFieldAgregarAlumnoVNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAgregarAlumnoVNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAgregarAlumnoVNombreActionPerformed
     
     // sensibilizacion de botones
     public JButton getjButtonAgregarAlumnoVCancelar(){
         return jButtonAgregarAlumnoVCancelar;
     }
+    
+    public JButton getjButtonAgregarAlumnoVCrear(){
+        return jButtonAgregarAlumnoVCrear;
+    }
+    
+    public String getjTextFieldAgregarAlumnoVNombre(){
+        return jTextFieldAgregarAlumnoVNombre.getText();
+    }
+    
+    public String getjTextFieldAgregarAlumnoVCurso(){
+        return jTextFieldAgregarAlumnoVCurso.getText();
+    }
+        
+    public String getjTextFieldAgregarAlumnoVRut(){
+        return jTextFieldAgregarAlumnoVRut.getText();
+    }
+    
+    public void ocultarjLabelAgregarAlumnoVExito(){
+        jLabelAgregarAlumnoVExito.setVisible(false);
+    }
+    
+    public void mostrarjLabelAgregarAlumnoVExito(){
+        jLabelAgregarAlumnoVExito.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregarAlumnoVCancelar;
+    private javax.swing.JButton jButtonAgregarAlumnoVCrear;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelAgregarAlumnoVExito;
+    private javax.swing.JTextField jTextFieldAgregarAlumnoVCurso;
+    private javax.swing.JTextField jTextFieldAgregarAlumnoVNombre;
+    private javax.swing.JTextField jTextFieldAgregarAlumnoVRut;
     // End of variables declaration//GEN-END:variables
 }

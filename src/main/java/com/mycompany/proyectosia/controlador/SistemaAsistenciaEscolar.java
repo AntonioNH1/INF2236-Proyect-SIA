@@ -8,6 +8,10 @@ import com.mycompany.proyectosia.modelo.Profesor;
 import com.mycompany.proyectosia.modelo.Asistencia;
 import com.mycompany.proyectosia.modelo.Alumno;
 import com.mycompany.proyectosia.vista.GestionAlumnosV;
+import com.mycompany.proyectosia.vista.GestionAsistencia.EliminarAsistenciaP;
+import com.mycompany.proyectosia.vista.GestionAsistencia.ModificarAsistenciaP;
+import com.mycompany.proyectosia.vista.GestionAsistencia.RegistrarAsistenciaP;
+import com.mycompany.proyectosia.vista.GestionAsistenciaV;
 import com.mycompany.proyectosia.vista.gestionAlumnos.AgregarAlumnoV;
 import com.mycompany.proyectosia.vista.MenuV;
 import java.awt.event.ActionEvent;
@@ -35,6 +39,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
     private MenuV ventanaPrincipal;
     private GestionAlumnosV ventanaAlumnos;
     private AgregarAlumnoV ventanaAlumnoAgregar;
+    private GestionAsistenciaV ventanaAsistencia;
     
     public SistemaAsistenciaEscolar(){
         this.lectorConsola = new BufferedReader(new InputStreamReader(System.in));
@@ -51,6 +56,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
         
         ventanaPrincipal = new MenuV();
         ventanaPrincipal.getjButtonMenuVAlumnos().addActionListener(this);
+        ventanaPrincipal.getjButtonMenuVAsistencia().addActionListener(this);
         ventanaPrincipal.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventanaPrincipal.setVisible(true);
         ventanaPrincipal.setLocationRelativeTo(null);
@@ -116,12 +122,64 @@ public class SistemaAsistenciaEscolar implements ActionListener{
            return;
        }
         
+        
+        if (ae.getSource() == ventanaPrincipal.getjButtonMenuVAsistencia()){
+           ventanaAsistencia = new GestionAsistenciaV();
+           // sensibilizar botones
+           ventanaAsistencia.getjButtonGestionAsistenciaVCancelar().addActionListener(this);
+           ventanaAsistencia.getjButtonGestionAsistenciaVIr().addActionListener(this);
+           ventanaAsistencia.getjComboBoxGestionAsistenciaVSeleccion().addActionListener(this);
+           // mostrar ventana
+           ventanaAsistencia.setLocationRelativeTo(null);
+           ventanaAsistencia.setVisible(true);
+           return;
+       }
+        
+        // cerrar ventanaAsistencia
+        if (ventanaAsistencia !=null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVCancelar()){
+          ventanaAsistencia.dispose();
+          return;
+       }
+        
         // cerrar ventanaAlumnos
         if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVCancelar()){
           ventanaAlumnos.dispose();
           return;
        }
         
+       // Acceder boton ir 
+       if (ventanaAsistencia !=null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVIr()){
+          
+          if (ventanaAsistencia != null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVIr()) {
+
+            String opcion = (String) ventanaAsistencia
+                    .getjComboBoxGestionAsistenciaVSeleccion()
+                    .getSelectedItem();
+
+            switch (opcion) {
+                case "Registrar Asistencia":
+                    // abrir nueva ventana o lógica
+                    RegistrarAsistenciaP reg = new RegistrarAsistenciaP();
+                    reg.setVisible(true);
+                    reg.setLocationRelativeTo(null);
+                    break;
+
+                case "Modificar Asistencia":
+                    ModificarAsistenciaP mod = new ModificarAsistenciaP();
+                    mod.setVisible(true);
+                    mod.setLocationRelativeTo(null);
+                    break;
+
+                case "Eliminar Asistencia":
+                    EliminarAsistenciaP eli = new EliminarAsistenciaP();
+                    eli.setVisible(true);
+                    eli.setLocationRelativeTo(null);
+                    break;
+            }
+            return;
+        }
+
+       }
         // ventana gestion alumnos -> abrir agregar alumno
         if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVIr()){
           String opcionSeleccionada = (String) ventanaAlumnos.getjComboBoxGestionAlumnosVOpciones().getSelectedItem();

@@ -123,6 +123,10 @@ public class MenuV extends javax.swing.JFrame {
     public JButton getjButtonMenuVAlumnos(){
         return jButtonMenuVAlumnos;
     }
+    
+    public JButton getjButtonMenuVAsistencia(){
+        return jButtonMenuVAsistencia;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonMenuVAlumnos;
