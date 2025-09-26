@@ -52,7 +52,8 @@ public class MenuV extends javax.swing.JFrame {
 
         jButtonMenuVAgregarProfesores.setBackground(new java.awt.Color(204, 204, 204));
         jButtonMenuVAgregarProfesores.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
-        jButtonMenuVAgregarProfesores.setText("Agregar Profesor");
+        jButtonMenuVAgregarProfesores.setText("Modulo Profesor");
+        jButtonMenuVAgregarProfesores.setToolTipText("");
         jButtonMenuVAgregarProfesores.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonMenuVAgregarProfesores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +63,7 @@ public class MenuV extends javax.swing.JFrame {
 
         jButtonMenuVModuloProfesores.setBackground(new java.awt.Color(204, 204, 204));
         jButtonMenuVModuloProfesores.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
-        jButtonMenuVModuloProfesores.setText("Modulo Profesores");
+        jButtonMenuVModuloProfesores.setText("Modulo Asistencia");
         jButtonMenuVModuloProfesores.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonMenuVModuloProfesores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,11 +101,11 @@ public class MenuV extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonMenuVAgregarProfesores, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonMenuVModuloProfesores, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jButtonMenuVAgregarProfesores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButtonMenuVModuloProfesores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addComponent(jButtonMenuVSalir)
                 .addGap(44, 44, 44))
         );

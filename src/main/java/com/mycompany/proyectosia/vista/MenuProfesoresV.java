@@ -38,7 +38,7 @@ public class MenuProfesoresV extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Modulo Profesor");
+        jLabel1.setText("Modulo Asistencia");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setDoubleBuffered(true);
