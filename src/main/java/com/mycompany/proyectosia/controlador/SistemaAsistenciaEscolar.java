@@ -7,13 +7,22 @@ package com.mycompany.proyectosia.controlador;
 import com.mycompany.proyectosia.modelo.Profesor;
 import com.mycompany.proyectosia.modelo.Asistencia;
 import com.mycompany.proyectosia.modelo.Alumno;
+
+import com.mycompany.proyectosia.vista.AgregarProfesorV;
+import com.mycompany.proyectosia.vista.GestionAlumnos.BuscarAlumnoV;
+import com.mycompany.proyectosia.vista.GestionAlumnos.EliminarAlumnoV;
 import com.mycompany.proyectosia.vista.GestionAlumnosV;
 import com.mycompany.proyectosia.vista.GestionAsistencia.EliminarAsistenciaP;
 import com.mycompany.proyectosia.vista.GestionAsistencia.ModificarAsistenciaP;
 import com.mycompany.proyectosia.vista.GestionAsistencia.RegistrarAsistenciaP;
 import com.mycompany.proyectosia.vista.GestionAsistenciaV;
+import com.mycompany.proyectosia.vista.MenuProfesoresV;
 import com.mycompany.proyectosia.vista.gestionAlumnos.AgregarAlumnoV;
 import com.mycompany.proyectosia.vista.MenuV;
+import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoEditarP;
+import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoRellenadoP;
+import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoV;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -23,6 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -37,9 +47,21 @@ public class SistemaAsistenciaEscolar implements ActionListener{
     
     // ventanas
     private MenuV ventanaPrincipal;
+    private MenuProfesoresV ventanaProfesores;
     private GestionAlumnosV ventanaAlumnos;
-    private AgregarAlumnoV ventanaAlumnoAgregar;
     private GestionAsistenciaV ventanaAsistencia;
+    private AgregarProfesorV ventanaProfesorAgregar;
+    
+    // ventanas GestionAlumnosV
+    private AgregarAlumnoV ventanaAlumnoAgregar;
+    private ModificarAlumnoV ventanaAlumnoModificar;
+    private EliminarAlumnoV ventanaAlumnoEliminar;
+    
+    // jPanels para refrescar ventanas
+    private ModificarAlumnoRellenadoP panelRellenadoAlumno;
+    private ModificarAlumnoEditarP panelEditarAlumno;
+    
+            
     
     public SistemaAsistenciaEscolar(){
         this.lectorConsola = new BufferedReader(new InputStreamReader(System.in));
@@ -55,8 +77,9 @@ public class SistemaAsistenciaEscolar implements ActionListener{
         int opcionMenu;
         
         ventanaPrincipal = new MenuV();
-        ventanaPrincipal.getjButtonMenuVAlumnos().addActionListener(this);
-        ventanaPrincipal.getjButtonMenuVAsistencia().addActionListener(this);
+        ventanaPrincipal.getjButtonMenuVAgregarProfesores().addActionListener(this);
+        ventanaPrincipal.getjButtonMenuVModuloProfesores().addActionListener(this);
+        ventanaPrincipal.getjButtonMenuVSalir().addActionListener(this);
         ventanaPrincipal.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventanaPrincipal.setVisible(true);
         ventanaPrincipal.setLocationRelativeTo(null);
@@ -77,9 +100,11 @@ public class SistemaAsistenciaEscolar implements ActionListener{
             opcionMenu = leerEntero();
 
             switch (opcionMenu) {
+                /* comentado (implementado en ventana)
                 case 1:
                     insertarAlumno();
                     break;
+                    */
                 case 2:
                     mostrarAsistenciaAlumnos();
                     break;
@@ -93,7 +118,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
                     gestionarReportes();
                     break;
                 case 6:
-                    insertarProfesor();
+                    //insertarProfesor();
                     break;
                 case 7:
                     gestionarJustificaciones();
@@ -109,21 +134,208 @@ public class SistemaAsistenciaEscolar implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent ae){
-        // ventana gestion alumnos
-        if (ae.getSource() == ventanaPrincipal.getjButtonMenuVAlumnos()){
+
+        
+        // GESTION VENTANA PRINCIPAL
+        if (ae.getSource() == ventanaPrincipal.getjButtonMenuVSalir()){
+          ventanaPrincipal.dispose();
+          return;
+       }
+        
+        if (ae.getSource() == ventanaPrincipal.getjButtonMenuVModuloProfesores()){
+            ventanaProfesores = new MenuProfesoresV();
+            // sensibilizar botones
+            ventanaProfesores.getjButtonMenuProfesoresVAlumnos().addActionListener(this);
+            ventanaProfesores.getjButtonMenuProfesoresVAsistencia().addActionListener(this);
+            ventanaProfesores.getjButtonMenuProfesoresVCancelar().addActionListener(this);
+            // mostrar ventana
+            ventanaProfesores.setVisible(true);
+            ventanaProfesores.setLocationRelativeTo(null);
+        }
+        
+        
+
+        // GESTION VENTANA PROFESOR
+        if (ventanaProfesores != null && ae.getSource() == ventanaProfesores.getjButtonMenuProfesoresVAlumnos()){
            ventanaAlumnos = new GestionAlumnosV();
            // sensibilizar botones
-           ventanaAlumnos.getjButtonGestionAlumnosVCancelar().addActionListener(this);
            ventanaAlumnos.getjComboBoxGestionAlumnosVOpciones().addActionListener(this);
            ventanaAlumnos.getjButtonGestionAlumnosVIr().addActionListener(this);
+           ventanaAlumnos.getjButtonGestionAlumnosVCancelar().addActionListener(this);
            // mostrar ventana
            ventanaAlumnos.setVisible(true);
            ventanaAlumnos.setLocationRelativeTo(null);
            return;
        }
         
+        // cerrar ventanaProfesores
+        if (ventanaProfesores !=null && ae.getSource() == ventanaProfesores.getjButtonMenuProfesoresVCancelar()){
+          ventanaProfesores.dispose();
+          return;
+       }
         
-        if (ae.getSource() == ventanaPrincipal.getjButtonMenuVAsistencia()){
+        // Gestion Agregar Profesor
+        if (ae.getSource() == ventanaPrincipal.getjButtonMenuVAgregarProfesores()){
+            ventanaProfesorAgregar = new AgregarProfesorV();
+            ventanaProfesorAgregar.ocultarjLabelAgregarProfesorVExito();
+            // sensibilizar botones
+            ventanaProfesorAgregar.getjButtonAgregarProfesorVCrear().addActionListener(this);
+            ventanaProfesorAgregar.getjButtonAgregarProfesorVCancelar().addActionListener(this);
+            // mostrar ventana
+            ventanaProfesorAgregar.setVisible(true);
+            ventanaProfesorAgregar.setLocationRelativeTo(null);
+        }
+        
+        // cerrar ventana Agregar Profesor
+        if (ventanaProfesorAgregar !=null && ae.getSource() == ventanaProfesorAgregar.getjButtonAgregarProfesorVCancelar()){
+          ventanaProfesorAgregar.dispose();
+          return;
+       }
+        if (ventanaProfesorAgregar !=null && ae.getSource() == ventanaProfesorAgregar.getjButtonAgregarProfesorVCrear()){
+          insertarProfesor(ventanaProfesorAgregar.getjTextFieldAgregarProfesorVNombre(), ventanaProfesorAgregar.getjTextFieldAgregarProfesorVCurso(), ventanaProfesorAgregar.getjTextFieldAgregarProfesorVRut());
+          ventanaProfesorAgregar.mostrarjLabelAgregarProfesorVExito();
+          
+          return;
+       }
+        
+        
+        
+        
+        
+        // GESTION VENTANA ALUMNOS
+        if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVCancelar()){
+          ventanaAlumnos.dispose();
+          return;
+       }
+        
+        // ventana gestion alumnos -> abrir agregar alumno
+        if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVIr()){
+          String opcionSeleccionada = (String) ventanaAlumnos.getjComboBoxGestionAlumnosVOpciones().getSelectedItem();
+          if ("Agregar Alumno".equals(opcionSeleccionada)){
+              ventanaAlumnoAgregar = new AgregarAlumnoV();
+              ventanaAlumnoAgregar.ocultarjLabelAgregarAlumnoVExito();
+              // sensibilizar botones
+              ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCancelar().addActionListener(this);
+              ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCrear().addActionListener(this);
+              ventanaAlumnoAgregar.setVisible(true);
+              ventanaAlumnoAgregar.setLocationRelativeTo(null);
+              
+          }
+          else if("Modificar Alumno".equals(opcionSeleccionada)){
+              ventanaAlumnoModificar = new ModificarAlumnoV();
+              JPanel panelPrincipalAlumno = ventanaAlumnoModificar.getjPanelModificarAlumnoVPrincipal();
+              
+              panelRellenadoAlumno = new ModificarAlumnoRellenadoP();
+              panelRellenadoAlumno.setSize(440, 275);
+              panelRellenadoAlumno.setLocation(0, 0);
+              
+              panelPrincipalAlumno.removeAll();
+              panelPrincipalAlumno.add(panelRellenadoAlumno, BorderLayout.CENTER);
+              panelPrincipalAlumno.revalidate();
+              panelPrincipalAlumno.repaint();
+              
+              
+              panelRellenadoAlumno.ocultarjLabelModificarAlumnoRellenadoPError();
+              // sensibilizar botones
+              panelRellenadoAlumno.getjButtonModificarAlumnoRellenadoPBuscar().addActionListener(this);
+              ventanaAlumnoModificar.getjButtonModificarAlumnoVCancelar().addActionListener(this);
+              ventanaAlumnoModificar.setVisible(true);
+              ventanaAlumnoModificar.setLocationRelativeTo(null);
+          }
+          else if("Eliminar Alumno".equals(opcionSeleccionada)){
+              ventanaAlumnoEliminar = new EliminarAlumnoV();
+              ventanaAlumnoEliminar.ocultarjLabelEliminarAlumnoVExito();
+              ventanaAlumnoEliminar.ocultarjLabelEliminarAlumnoVNoExiste();
+              
+              ventanaAlumnoEliminar.getjButtonEliminarAlumnoVCancelar().addActionListener(this);
+              ventanaAlumnoEliminar.getjButtonEliminarAlumnoVEliminar().addActionListener(this);
+              ventanaAlumnoEliminar.setVisible(true);
+              ventanaAlumnoEliminar.setLocationRelativeTo(null);
+          }
+          /*
+          else if("Buscar Alumno".equals(opcionSeleccionada)){
+              ventanaAlumnoBuscar = new BuscarAlumnoV();
+          return;
+*/
+       }
+        
+        if (ventanaAlumnoAgregar !=null && ae.getSource() == ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCrear()){
+          if(insertarAlumno(ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVNombre(), ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVCurso(), ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVRut())){
+              ventanaAlumnoAgregar.mostrarjLabelAgregarAlumnoVExito();
+          }
+          else{
+              System.out.println("Error: Ya existe un alumno con ese RUT ");
+          }
+          
+          return;
+       }
+        
+        // cerrar ventanaAlumnoAgregar
+        if (ventanaAlumnoAgregar !=null && ae.getSource() == ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCancelar()){
+          ventanaAlumnoAgregar.dispose();
+          return;
+       }
+        
+        if (panelRellenadoAlumno !=null && ae.getSource() == panelRellenadoAlumno.getjButtonModificarAlumnoRellenadoPBuscar()){
+            Alumno alumnoBuscado = obtenerAlumnoPorRut(panelRellenadoAlumno.getjTextFieldModificarAlumnoRellenadoPRut());
+                    
+            if(alumnoBuscado != null){
+                        
+                panelEditarAlumno = new ModificarAlumnoEditarP();
+                panelEditarAlumno.setSize(440, 275);
+                panelEditarAlumno.setLocation(0, 0);
+
+                ventanaAlumnoModificar.getjPanelModificarAlumnoVPrincipal().removeAll();
+                ventanaAlumnoModificar.getjPanelModificarAlumnoVPrincipal().add(panelEditarAlumno, BorderLayout.CENTER);
+                ventanaAlumnoModificar.getjPanelModificarAlumnoVPrincipal().revalidate();
+                ventanaAlumnoModificar.getjPanelModificarAlumnoVPrincipal().repaint();
+                
+                panelEditarAlumno.getjButtonModificarAlumnoEditarPActualizar().addActionListener(this);
+                
+                panelEditarAlumno.ocultarjLabelModificarAlumnoEditarPExito();
+                panelEditarAlumno.setjTextFieldModificarAlumnoEditarPNombre(alumnoBuscado.getNombre());
+                panelEditarAlumno.setjTextFieldModificarAlumnoEditarPCurso(alumnoBuscado.getCurso());
+                panelEditarAlumno.setjTextFieldModificarAlumnoEditarPRut(alumnoBuscado.getRut());
+                
+                
+            }
+            panelRellenadoAlumno.mostrarjLabelModificarAlumnoRellenadoPError();
+            return;
+        }
+        if (panelEditarAlumno != null && ae.getSource() == panelEditarAlumno.getjButtonModificarAlumnoEditarPActualizar()){
+            Alumno alumnoBuscado = obtenerAlumnoPorRut(panelRellenadoAlumno.getjTextFieldModificarAlumnoRellenadoPRut());
+            if(modificarAlumno(panelEditarAlumno.getjTextFieldModificarAlumnoEditarPNombre(), panelEditarAlumno.getjTextFieldModificarAlumnoEditarPCurso(), panelEditarAlumno.getjTextFieldModificarAlumnoEditarPRut(), alumnoBuscado.getRut())){
+                panelEditarAlumno.mostrarjLabelModificarAlumnoEditarPExito();
+            }
+            else{
+                panelRellenadoAlumno.mostrarjLabelModificarAlumnoRellenadoPError();
+            }
+            return;
+        }
+        if (ventanaAlumnoModificar !=null && ae.getSource() == ventanaAlumnoModificar.getjButtonModificarAlumnoVCancelar()){
+            ventanaAlumnoModificar.dispose();
+            return;
+        }
+        
+        //Elimina Alumno
+        if (ventanaAlumnoEliminar !=null && ae.getSource() == ventanaAlumnoEliminar.getjButtonEliminarAlumnoVEliminar()){
+          if(eliminarAlumno(ventanaAlumnoEliminar.getjTextFieldEliminarAlumnoVRut())){
+              ventanaAlumnoEliminar.mostrarjLabelAgregarAlumnoVExito();
+          }
+          else{
+              ventanaAlumnoEliminar.mostarjLabelEliminarAlumnoVNoExiste();
+          }
+          
+          return;
+        }
+        
+        //Cerrar Ventana Eliminar
+        if (ventanaAlumnoEliminar !=null && ae.getSource() == ventanaAlumnoEliminar.getjButtonEliminarAlumnoVCancelar()){
+          ventanaAlumnoEliminar.dispose();
+          return;
+        }
+        
+        if (ae.getSource() == ventanaProfesores.getjButtonMenuProfesoresVAsistencia()){
            ventanaAsistencia = new GestionAsistenciaV();
            // sensibilizar botones
            ventanaAsistencia.getjButtonGestionAsistenciaVCancelar().addActionListener(this);
@@ -140,17 +352,8 @@ public class SistemaAsistenciaEscolar implements ActionListener{
           ventanaAsistencia.dispose();
           return;
        }
-        
-        // cerrar ventanaAlumnos
-        if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVCancelar()){
-          ventanaAlumnos.dispose();
-          return;
-       }
-        
-       // Acceder boton ir 
-       if (ventanaAsistencia !=null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVIr()){
-          
-          if (ventanaAsistencia != null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVIr()) {
+        // Acceder boton ir 
+        if (ventanaAsistencia != null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVIr()) {
 
             String opcion = (String) ventanaAsistencia
                     .getjComboBoxGestionAsistenciaVSeleccion()
@@ -161,70 +364,72 @@ public class SistemaAsistenciaEscolar implements ActionListener{
                     // abrir nueva ventana o lógica
                     RegistrarAsistenciaP reg = new RegistrarAsistenciaP();
                     reg.setVisible(true);
-                    reg.setLocationRelativeTo(null);
+                    //reg.setLocationRelativeTo(null);
                     break;
 
                 case "Modificar Asistencia":
                     ModificarAsistenciaP mod = new ModificarAsistenciaP();
                     mod.setVisible(true);
-                    mod.setLocationRelativeTo(null);
+                    //mod.setLocationRelativeTo(null);
                     break;
 
                 case "Eliminar Asistencia":
                     EliminarAsistenciaP eli = new EliminarAsistenciaP();
                     eli.setVisible(true);
-                    eli.setLocationRelativeTo(null);
+                    //eli.setLocationRelativeTo(null);
                     break;
             }
             return;
         }
+        
 
-       }
-        // ventana gestion alumnos -> abrir agregar alumno
-        if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVIr()){
-          String opcionSeleccionada = (String) ventanaAlumnos.getjComboBoxGestionAlumnosVOpciones().getSelectedItem();
-          if ("Agregar Alumno".equals(opcionSeleccionada)){
-              ventanaAlumnoAgregar = new AgregarAlumnoV();
-              ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCancelar().addActionListener(this);
-              ventanaAlumnoAgregar.setVisible(true);
-              ventanaAlumnoAgregar.setLocationRelativeTo(null);
-              
-          }
-          return;
-       }
-        
-        // cerrar ventanaAlumnoAgregar
-        if (ventanaAlumnoAgregar !=null && ae.getSource() == ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCancelar()){
-          ventanaAlumnoAgregar.dispose();
-          return;
-       }
-        
     }
     
     
-    private void insertarAlumno() throws IOException{
-        System.out.println("\n --- Nuevo Alumno ---");
-        
-        System.out.print("Ingrese rut del nuevo alumno: ");
-        String rut = this.lectorConsola.readLine();
-        
-        if(this.mapaAlumnos.containsKey(rut)){
-            System.out.println("Error: Ya existe un alumno con el RUT " + rut);
-            return;
+    private boolean modificarAlumno(String nombre, String curso, String rut){
+        if(!this.mapaAlumnos.containsKey(rut)){
+            // hacer excepcion: la accion de la excepcion puede ser abrir una ventanaError que le pase por setText() el tipo de error, por ejemplo el prinln de esta linea
+            System.out.println("Error: No existe ningun alumno con el RUT"+ rut);
+            return false;
         }
         
-        System.out.print("Ingrese nombre completo del nuevo alumno: ");
-        String nombre = this.lectorConsola.readLine();
+        Alumno alumnoModificar = this.mapaAlumnos.get(rut);
+        alumnoModificar.setNombre(nombre);
+        alumnoModificar.setCurso(curso);
+        alumnoModificar.setRut(rut);
         
-        System.out.print("Ingrese curso del nuevo alumno: ");
-        String curso = this.lectorConsola.readLine();
-           
+        return true;
+    }
+    
+    private boolean modificarAlumno(String nombre, String curso, String rut, String rutOriginal){
+        if(!this.mapaAlumnos.containsKey(rutOriginal)){
+            // hacer excepcion: la accion de la excepcion puede ser abrir una ventanaError que le pase por setText() el tipo de error, por ejemplo el prinln de esta linea
+            System.out.println("Error: No existe ningun alumno con el RUT"+ rut);
+            return false;
+        }
+        
+        Alumno alumnoModificar = this.mapaAlumnos.get(rutOriginal);
+        alumnoModificar.setNombre(nombre);
+        alumnoModificar.setCurso(curso);
+        alumnoModificar.setRut(rut);
+        
+        return true;
+    }
+    
+    
+    private boolean insertarAlumno(String nombre, String curso, String rut){
+
+        if(this.mapaAlumnos.containsKey(rut)){
+            // hacer excepcion: la accion de la excepcion puede ser abrir una ventanaError que le pase por setText() el tipo de error, por ejemplo el prinln de esta linea
+            System.out.println("Error: Ya existe un alumno con el RUT " + rut);
+            return false;
+        }
+        
         Alumno nuevoAlumno = new Alumno(nombre, curso, rut);
         
         this.mapaAlumnos.put(rut, nuevoAlumno);
-        
         System.out.println("El alumno " + nuevoAlumno.getNombre() + " se ha creado con exito.");
-    
+        return true;
     }
     
     private void buscarAlumnoPorRut() throws IOException {
@@ -239,7 +444,19 @@ public class SistemaAsistenciaEscolar implements ActionListener{
     System.out.println("Alumno: " + alumno.getNombre() + "| Curso: " + alumno.getCurso() + "| RUT: " + alumno.getRut());
     }
     
+    private boolean eliminarAlumno(String rut) {
+        if (rut == null || rut.trim().isEmpty()) {
+            return false;
+        }
 
+        // Si no existe la clave, no hay a quién borrar
+        if (!this.mapaAlumnos.containsKey(rut)) {
+            return false;
+        }
+
+        Alumno eliminado = this.mapaAlumnos.remove(rut);
+        return true;
+    }
    
     private void registrarAsistenciaDiaria() throws IOException {
         
@@ -421,38 +638,32 @@ private void gestionarReportes() throws IOException {
     
     
     
-     private void insertarProfesor() throws IOException {
+    private void insertarProfesor(String nombre, String rut, String curso) {
         System.out.println("\n--- Nuevo Profesor ---");
-        System.out.print("Ingrese RUT del nuevo profesor: ");
-        String rut = this.lectorConsola.readLine();
-        
+
         // Validación: No permitir RUTs de profesor duplicados
-        for(Profesor profesor : listaProfesores) {
-            if(profesor.getRut().equalsIgnoreCase(rut)) {
+        for (Profesor profesor : listaProfesores) {
+            if (profesor.getRut().equalsIgnoreCase(rut)) {
                 System.out.println("Error: Ya existe un profesor con el RUT " + rut);
                 return;
             }
         }
 
-        System.out.print("Ingrese nombre completo del nuevo profesor: ");
-        String nombre = this.lectorConsola.readLine();
-        
-        System.out.print("Ingrese el curso del cual será profesor jefe: ");
-        String curso = this.lectorConsola.readLine();
-
-        // validamos que un curso no tenga más de un profesor jefe
-        for(Profesor profesor : listaProfesores) {
-            if(profesor.getCursoJefatura().equalsIgnoreCase(curso)) {
+        // Validamos que un curso no tenga más de un profesor jefe
+        for (Profesor profesor : listaProfesores) {
+            if (profesor.getCursoJefatura().equalsIgnoreCase(curso)) {
                 System.out.println("Error: El curso '" + curso + "' ya está asignado al profesor " + profesor.getNombre());
                 return;
             }
         }
-        
+
         Profesor nuevoProfesor = new Profesor(nombre, rut, curso);
-        
+
         if (nuevoProfesor.getCursoJefatura() != null) {
             this.listaProfesores.add(nuevoProfesor);
-            System.out.println("El profesor " + nuevoProfesor.getNombre() + " se ha registrado con éxito como jefe del curso " + nuevoProfesor.getCursoJefatura() + ".");
+            System.out.println("El profesor " + nuevoProfesor.getNombre() +
+                    " se ha registrado con éxito como jefe del curso " +
+                    nuevoProfesor.getCursoJefatura() + ".");
         }
     }
 
