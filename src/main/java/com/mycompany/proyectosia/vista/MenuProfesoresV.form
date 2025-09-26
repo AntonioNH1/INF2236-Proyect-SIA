@@ -31,10 +31,12 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel2" pref="195" max="32767" attributes="0"/>
-                          <Component id="jButtonMenuVAgregarProfesores" max="32767" attributes="0"/>
-                          <Component id="jButtonMenuVModuloProfesores" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButtonMenuProfesoresVAlumnos" min="-2" pref="195" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel2" pref="195" max="32767" attributes="0"/>
+                              <Component id="jButtonMenuProfesoresVAsistencia" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -42,8 +44,8 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="jButtonMenuVSalir" min="-2" pref="62" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+              <Component id="jButtonMenuProfesoresVCancelar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,11 +57,11 @@
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButtonMenuVAgregarProfesores" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButtonMenuVModuloProfesores" min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="jButtonMenuProfesoresVAsistencia" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="jButtonMenuProfesoresVAlumnos" min="-2" pref="31" max="-2" attributes="0"/>
               <EmptySpace pref="145" max="32767" attributes="0"/>
-              <Component id="jButtonMenuVSalir" min="-2" max="-2" attributes="0"/>
+              <Component id="jButtonMenuProfesoresVCancelar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -72,7 +74,7 @@
           <Font name="Quicksand" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Bienvenido al sistema de asistencia escolar"/>
+        <Property name="text" type="java.lang.String" value="Modulo Profesor"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder/>
@@ -94,7 +96,7 @@
           <Font name="Quicksand" size="14" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Opciones principales"/>
+        <Property name="text" type="java.lang.String" value="Opciones"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder/>
@@ -102,7 +104,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonMenuVAgregarProfesores">
+    <Component class="javax.swing.JButton" name="jButtonMenuProfesoresVAlumnos">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -110,7 +112,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Quicksand" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Agregar Profesor"/>
+        <Property name="text" type="java.lang.String" value="Gestionar Alumnos"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
             <BevelBorder/>
@@ -118,10 +120,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMenuVAgregarProfesoresActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMenuProfesoresVAlumnosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonMenuVModuloProfesores">
+    <Component class="javax.swing.JButton" name="jButtonMenuProfesoresVAsistencia">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -129,20 +131,17 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Quicksand" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Modulo Profesores"/>
+        <Property name="text" type="java.lang.String" value="Gestionar Asistencia"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMenuVModuloProfesoresActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonMenuVSalir">
+    <Component class="javax.swing.JButton" name="jButtonMenuProfesoresVCancelar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Salir"/>
+        <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
     </Component>
   </SubComponents>
