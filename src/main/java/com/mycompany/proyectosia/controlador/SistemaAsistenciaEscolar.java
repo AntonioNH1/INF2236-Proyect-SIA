@@ -12,9 +12,7 @@ import com.mycompany.proyectosia.vista.AgregarProfesorV;
 import com.mycompany.proyectosia.vista.EliminarProfesorV;
 import com.mycompany.proyectosia.vista.GestionAlumnos.EliminarAlumnoV;
 import com.mycompany.proyectosia.vista.GestionAlumnosV;
-import com.mycompany.proyectosia.vista.GestionAsistencia.EliminarAsistenciaP;
-import com.mycompany.proyectosia.vista.GestionAsistencia.ModificarAsistenciaP;
-import com.mycompany.proyectosia.vista.GestionAsistencia.RegistrarAsistenciaP;
+import com.mycompany.proyectosia.vista.GestionAsistencia.GestionTotalAsistenciaV;
 import com.mycompany.proyectosia.vista.GestionAsistenciaV;
 import com.mycompany.proyectosia.vista.MenuAsistenciaV;
 import com.mycompany.proyectosia.vista.MenuProfesorV;
@@ -23,17 +21,24 @@ import com.mycompany.proyectosia.vista.MenuV;
 import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoEditarP;
 import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoRellenadoP;
 import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoV;
+import com.mycompany.proyectosia.vista.modelosTablas.AsistenciaTableModel;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -51,6 +56,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
     private MenuAsistenciaV ventanaAsistenciaMenu;
     private GestionAlumnosV ventanaAlumnos;
     private GestionAsistenciaV ventanaAsistencia;
+    private GestionTotalAsistenciaV ventanaTablaAsistencia;
     private AgregarProfesorV ventanaProfesorAgregar;
     private MenuProfesorV ventanaMenuProfesor;
     private EliminarProfesorV ventanaEliminarProfesor;
@@ -82,6 +88,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
         ventanaPrincipal = new MenuV();
         ventanaPrincipal.getjButtonMenuVModuloProfesor().addActionListener(this);
         ventanaPrincipal.getjButtonMenuVModuloAsistencia().addActionListener(this);
+        ventanaPrincipal.getjButtonMenuVGestionarAlumnos().addActionListener(this);
         ventanaPrincipal.getjButtonMenuVSalir().addActionListener(this);
         ventanaPrincipal.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventanaPrincipal.setVisible(true);
@@ -148,7 +155,6 @@ public class SistemaAsistenciaEscolar implements ActionListener{
         if (ae.getSource() == ventanaPrincipal.getjButtonMenuVModuloAsistencia()){
             ventanaAsistenciaMenu = new MenuAsistenciaV();
             // sensibilizar botones
-            ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAlumnos().addActionListener(this);
             ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAsistencia().addActionListener(this);
             ventanaAsistenciaMenu.getjButtonMenuAsistenciaVCancelar().addActionListener(this);
             // mostrar ventana
@@ -156,10 +162,81 @@ public class SistemaAsistenciaEscolar implements ActionListener{
             ventanaAsistenciaMenu.setLocationRelativeTo(null);
         }
         
+                // crear ventana asistencia
+        if (ae.getSource() == ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAsistencia()){
+           ventanaAsistencia = new GestionAsistenciaV();
+           // sensibilizar botones
+           ventanaAsistencia.getjButtonGestionAsistenciaVCancelar().addActionListener(this);
+           ventanaAsistencia.getjButtonGestionAsistenciaVGestionPorCurso().addActionListener(this);
+           ventanaAsistencia.getjButtonGestionAsistenciaVModificarFechaAsistencia().addActionListener(this);
+           // mostrar ventana
+           ventanaAsistencia.setLocationRelativeTo(null);
+           ventanaAsistencia.setVisible(true);
+           return;
+       }
         
+        // cerrar ventanaAsistencia
+        if (ventanaAsistencia !=null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVCancelar()){
+          ventanaAsistencia.dispose();
+          return;
+       }
+        
+        // Creacion tabla de gestion de asistencia
+        if (ventanaAsistencia != null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVGestionPorCurso()) {
+            ventanaTablaAsistencia = new GestionTotalAsistenciaV();
+            // sensibilizar botones
+            // jButtonGestionTotalAsistenciaVBorrar por ahora no
+            ventanaTablaAsistencia.getjButtonGestionTotalAsistenciaVBuscar().addActionListener(this);
+            ventanaTablaAsistencia.getjButtonGestionTotalAsistenciaVSalir().addActionListener(this);
 
-        // GESTION VENTANA ASISTENCIA
-        if (ventanaAsistenciaMenu != null && ae.getSource() == ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAlumnos()){
+            // mostrar ventana
+            ventanaTablaAsistencia.setLocationRelativeTo(null);
+            ventanaTablaAsistencia.setVisible(true);
+            return;
+        }
+
+        // buscar en la tabla
+        if (ventanaTablaAsistencia != null && ae.getSource() == ventanaTablaAsistencia.getjButtonGestionTotalAsistenciaVBuscar()) {
+            String fechaTexto = ventanaTablaAsistencia.getjTextFieldGestionTotalAsistenciaVFecha().getText();
+            String cursoTexto = ventanaTablaAsistencia.getjTextFieldGestionTotalAsistenciaVCurso().getText();
+
+            if (cursoTexto.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(ventanaTablaAsistencia, "Por favor, ingrese un curso.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                LocalDate fecha = LocalDate.parse(fechaTexto, formatter);
+
+                ArrayList<Alumno> alumnosDelCurso = obtenerAlumnosPorCurso(cursoTexto);
+
+                if (alumnosDelCurso.isEmpty()) {
+                    JOptionPane.showMessageDialog(ventanaTablaAsistencia, "No se encontraron alumnos para el curso '" + cursoTexto + "'.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                AsistenciaTableModel modelo = new AsistenciaTableModel(alumnosDelCurso, fecha);
+
+                JTable tabla = ventanaTablaAsistencia.getjTableGestionTotalAsistenciaVTabla();
+                tabla.setModel(modelo);
+
+                configurarEditorDeAsistencia(tabla);
+
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(ventanaTablaAsistencia, "El formato de la fecha es incorrecto. Use dd-MM-yyyy.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+            }
+            return;
+        }
+
+        // salir de ventanaTablaAsistencia
+        if (ventanaTablaAsistencia != null && ae.getSource() == ventanaTablaAsistencia.getjButtonGestionTotalAsistenciaVSalir()) {
+            ventanaTablaAsistencia.dispose();
+            // aqui va la logica para guardar cambios
+            return;
+        }
+
+        // GESTION VENTANA ALUMNOS
+        if (ventanaPrincipal != null && ae.getSource() == ventanaPrincipal.getjButtonMenuVGestionarAlumnos()){
            ventanaAlumnos = new GestionAlumnosV();
            // sensibilizar botones
            ventanaAlumnos.getjComboBoxGestionAlumnosVOpciones().addActionListener(this);
@@ -169,6 +246,135 @@ public class SistemaAsistenciaEscolar implements ActionListener{
            ventanaAlumnos.setVisible(true);
            ventanaAlumnos.setLocationRelativeTo(null);
            return;
+       }
+        // GESTION VENTANA ALUMNOS
+    
+        // ventana gestion alumnos -> abrir agregar alumno
+        if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVIr()){
+          String opcionSeleccionada = (String) ventanaAlumnos.getjComboBoxGestionAlumnosVOpciones().getSelectedItem();
+          if ("Agregar Alumno".equals(opcionSeleccionada)){
+              ventanaAlumnoAgregar = new AgregarAlumnoV();
+              ventanaAlumnoAgregar.ocultarjLabelAgregarAlumnoVExito();
+              // sensibilizar botones
+              ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCancelar().addActionListener(this);
+              ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCrear().addActionListener(this);
+              ventanaAlumnoAgregar.setVisible(true);
+              ventanaAlumnoAgregar.setLocationRelativeTo(null);
+              
+          }
+          else if("Modificar Alumno".equals(opcionSeleccionada)){
+              ventanaAlumnoModificar = new ModificarAlumnoV();
+              JPanel panelPrincipalAlumno = ventanaAlumnoModificar.getjPanelModificarAlumnoVPrincipal();
+              
+              panelRellenadoAlumno = new ModificarAlumnoRellenadoP();
+              panelRellenadoAlumno.setSize(440, 275);
+              panelRellenadoAlumno.setLocation(0, 0);
+              
+              panelPrincipalAlumno.removeAll();
+              panelPrincipalAlumno.add(panelRellenadoAlumno, BorderLayout.CENTER);
+              panelPrincipalAlumno.revalidate();
+              panelPrincipalAlumno.repaint();
+              
+              
+              panelRellenadoAlumno.ocultarjLabelModificarAlumnoRellenadoPError();
+              // sensibilizar botones
+              panelRellenadoAlumno.getjButtonModificarAlumnoRellenadoPBuscar().addActionListener(this);
+              ventanaAlumnoModificar.getjButtonModificarAlumnoVCancelar().addActionListener(this);
+              ventanaAlumnoModificar.setVisible(true);
+              ventanaAlumnoModificar.setLocationRelativeTo(null);
+          }
+          else if("Eliminar Alumno".equals(opcionSeleccionada)){
+              ventanaAlumnoEliminar = new EliminarAlumnoV();
+              ventanaAlumnoEliminar.ocultarjLabelEliminarAlumnoVExito();
+              ventanaAlumnoEliminar.ocultarjLabelEliminarAlumnoVNoExiste();
+              
+              ventanaAlumnoEliminar.getjButtonEliminarAlumnoVCancelar().addActionListener(this);
+              ventanaAlumnoEliminar.getjButtonEliminarAlumnoVEliminar().addActionListener(this);
+              ventanaAlumnoEliminar.setVisible(true);
+              ventanaAlumnoEliminar.setLocationRelativeTo(null);
+          }
+          
+       }
+        
+        if (ventanaAlumnoAgregar !=null && ae.getSource() == ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCrear()){
+          if(insertarAlumno(ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVNombre(), ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVCurso(), ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVRut())){
+              ventanaAlumnoAgregar.mostrarjLabelAgregarAlumnoVExito();
+          }
+          else{
+              System.out.println("Error: Ya existe un alumno con ese RUT ");
+          }
+          
+          return;
+       }
+        
+        // cerrar ventanaAlumnoAgregar
+        if (ventanaAlumnoAgregar !=null && ae.getSource() == ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCancelar()){
+          ventanaAlumnoAgregar.dispose();
+          return;
+       }
+        
+        if (panelRellenadoAlumno !=null && ae.getSource() == panelRellenadoAlumno.getjButtonModificarAlumnoRellenadoPBuscar()){
+            Alumno alumnoBuscado = obtenerAlumnoPorRut(panelRellenadoAlumno.getjTextFieldModificarAlumnoRellenadoPRut());
+                    
+            if(alumnoBuscado != null){
+                        
+                panelEditarAlumno = new ModificarAlumnoEditarP();
+                panelEditarAlumno.setSize(440, 275);
+                panelEditarAlumno.setLocation(0, 0);
+
+                ventanaAlumnoModificar.getjPanelModificarAlumnoVPrincipal().removeAll();
+                ventanaAlumnoModificar.getjPanelModificarAlumnoVPrincipal().add(panelEditarAlumno, BorderLayout.CENTER);
+                ventanaAlumnoModificar.getjPanelModificarAlumnoVPrincipal().revalidate();
+                ventanaAlumnoModificar.getjPanelModificarAlumnoVPrincipal().repaint();
+                
+                panelEditarAlumno.getjButtonModificarAlumnoEditarPActualizar().addActionListener(this);
+                
+                panelEditarAlumno.ocultarjLabelModificarAlumnoEditarPExito();
+                panelEditarAlumno.setjTextFieldModificarAlumnoEditarPNombre(alumnoBuscado.getNombre());
+                panelEditarAlumno.setjTextFieldModificarAlumnoEditarPCurso(alumnoBuscado.getCurso());
+                panelEditarAlumno.setjTextFieldModificarAlumnoEditarPRut(alumnoBuscado.getRut());
+                
+                
+            }
+            panelRellenadoAlumno.mostrarjLabelModificarAlumnoRellenadoPError();
+            return;
+        }
+        if (panelEditarAlumno != null && ae.getSource() == panelEditarAlumno.getjButtonModificarAlumnoEditarPActualizar()){
+            Alumno alumnoBuscado = obtenerAlumnoPorRut(panelRellenadoAlumno.getjTextFieldModificarAlumnoRellenadoPRut());
+            if(modificarAlumno(panelEditarAlumno.getjTextFieldModificarAlumnoEditarPNombre(), panelEditarAlumno.getjTextFieldModificarAlumnoEditarPCurso(), panelEditarAlumno.getjTextFieldModificarAlumnoEditarPRut(), alumnoBuscado.getRut())){
+                panelEditarAlumno.mostrarjLabelModificarAlumnoEditarPExito();
+            }
+            else{
+                panelRellenadoAlumno.mostrarjLabelModificarAlumnoRellenadoPError();
+            }
+            return;
+        }
+        if (ventanaAlumnoModificar !=null && ae.getSource() == ventanaAlumnoModificar.getjButtonModificarAlumnoVCancelar()){
+            ventanaAlumnoModificar.dispose();
+            return;
+        }
+        
+        //Elimina Alumno
+        if (ventanaAlumnoEliminar !=null && ae.getSource() == ventanaAlumnoEliminar.getjButtonEliminarAlumnoVEliminar()){
+          if(eliminarAlumno(ventanaAlumnoEliminar.getjTextFieldEliminarAlumnoVRut())){
+              ventanaAlumnoEliminar.mostrarjLabelAgregarAlumnoVExito();
+          }
+          else{
+              ventanaAlumnoEliminar.mostarjLabelEliminarAlumnoVNoExiste();
+          }
+          
+          return;
+        }
+        
+        //Cerrar Ventana Eliminar
+        if (ventanaAlumnoEliminar !=null && ae.getSource() == ventanaAlumnoEliminar.getjButtonEliminarAlumnoVCancelar()){
+          ventanaAlumnoEliminar.dispose();
+          return;
+        }
+
+        if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVCancelar()){
+          ventanaAlumnos.dispose();
+          return;
        }
         
         // cerrar ventanaAsistencia
@@ -242,11 +448,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
         
         
         // GESTION VENTANA ALUMNOS
-        if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVCancelar()){
-          ventanaAlumnos.dispose();
-          return;
-       }
-        
+
     
         // ventana gestion alumnos -> abrir agregar alumno
         if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVIr()){
@@ -374,58 +576,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
           ventanaAlumnoEliminar.dispose();
           return;
         }
-        
-        if (ae.getSource() == ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAsistencia()){
-           ventanaAsistencia = new GestionAsistenciaV();
-           // sensibilizar botones
-           ventanaAsistencia.getjButtonGestionAsistenciaVCancelar().addActionListener(this);
-           ventanaAsistencia.getjButtonGestionAsistenciaVIr().addActionListener(this);
-           ventanaAsistencia.getjComboBoxGestionAsistenciaVSeleccion().addActionListener(this);
-           // mostrar ventana
-           ventanaAsistencia.setLocationRelativeTo(null);
-           ventanaAsistencia.setVisible(true);
-           return;
-       }
-        
-        // cerrar ventanaAsistencia
-        if (ventanaAsistencia !=null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVCancelar()){
-          ventanaAsistencia.dispose();
-          return;
-       }
-        // Acceder boton ir 
-        if (ventanaAsistencia != null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVIr()) {
-
-            String opcion = (String) ventanaAsistencia
-                    .getjComboBoxGestionAsistenciaVSeleccion()
-                    .getSelectedItem();
-
-            switch (opcion) {
-                case "Registrar Asistencia":
-                    // abrir nueva ventana o lógica
-                    RegistrarAsistenciaP reg = new RegistrarAsistenciaP();
-                    reg.setVisible(true);
-                    //reg.setLocationRelativeTo(null);
-                    break;
-
-                case "Modificar Asistencia":
-                    ModificarAsistenciaP mod = new ModificarAsistenciaP();
-                    mod.setVisible(true);
-                    //mod.setLocationRelativeTo(null);
-                    break;
-
-                case "Eliminar Asistencia":
-                    EliminarAsistenciaP eli = new EliminarAsistenciaP();
-                    eli.setVisible(true);
-                    //eli.setLocationRelativeTo(null);
-                    break;
-            }
-            return;
-        }
-        
-
     }
-    
-    
     private boolean modificarAlumno(String nombre, String curso, String rut){
         if(!this.mapaAlumnos.containsKey(rut)){
             // hacer excepcion: la accion de la excepcion puede ser abrir una ventanaError que le pase por setText() el tipo de error, por ejemplo el prinln de esta linea
@@ -772,6 +923,22 @@ private void cargarDatosIniciales() {
     private int leerEntero()throws IOException{
         int opcion = Integer.parseInt(this.lectorConsola.readLine());
         return opcion;
+    }
+    
+    // Utilidades de ventanas
+
+    private void configurarEditorDeAsistencia(JTable tabla) {
+        // Obtiene la columna "Estado asistencia" (la tercera, índice 2)
+        TableColumn estadoColumn = tabla.getColumnModel().getColumn(2);
+
+        // Crea un JComboBox y lo llena con los valores del enum
+        JComboBox<Asistencia.EstadoAsistencia> comboBox = new JComboBox<>();
+        for (Asistencia.EstadoAsistencia estado : Asistencia.EstadoAsistencia.values()) {
+            comboBox.addItem(estado);
+        }
+
+        // Asigna el ComboBox como el editor para esa columna
+        estadoColumn.setCellEditor(new DefaultCellEditor(comboBox));
     }
 }
     
