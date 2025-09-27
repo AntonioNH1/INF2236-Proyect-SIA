@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.proyectosia.vista.GestionAsistencia;
+package com.mycompany.proyectosia.vista;
 
 /**
  *
- * @author geoff
+ * @author anton
  */
-public class GestionTotalAsistencia extends javax.swing.JFrame {
+public class ModificarProfesorV extends javax.swing.JFrame {
 
     /**
-     * Creates new form GestionTotalAsistencia
+     * Creates new form ModificarProfesorV
      */
-    public GestionTotalAsistencia() {
+    public ModificarProfesorV() {
         initComponents();
     }
 
@@ -41,6 +41,7 @@ public class GestionTotalAsistencia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
