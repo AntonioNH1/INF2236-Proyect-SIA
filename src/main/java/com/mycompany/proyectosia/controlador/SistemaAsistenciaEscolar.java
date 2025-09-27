@@ -428,27 +428,32 @@ public class SistemaAsistenciaEscolar implements ActionListener{
                         "Datos incompletos", javax.swing.JOptionPane.WARNING_MESSAGE);
                 return;
             }
+
+            // NUEVO: bloquear RUT duplicado
+            if (existeProfesorPorRut(rut)) {
+                javax.swing.JOptionPane.showMessageDialog(ventanaProfesorAgregar,
+                        "El RUT ingresado ya está registrado.",
+                        "RUT duplicado", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             insertarProfesor(nombre.trim(), rut.trim(), curso.trim());
 
             javax.swing.JOptionPane.showMessageDialog(ventanaProfesorAgregar,
                     "Profesor agregado correctamente.");
 
-            // Limpia campos y (opcional) muestra/oculta el label de éxito
             ventanaProfesorAgregar.getjTextFieldAgregarProfesorVNombre().setText("");
             ventanaProfesorAgregar.getjTextFieldAgregarProfesorVCurso().setText("");
             ventanaProfesorAgregar.getjTextFieldAgregarProfesorVRut().setText("");
             ventanaProfesorAgregar.mostrarjLabelAgregarProfesorVExito();
             return;
         }
-        
+
         // cerrar ventana Agregar Profesor
         if (ventanaProfesorAgregar !=null && ae.getSource() == ventanaProfesorAgregar.getjButtonAgregarProfesorVCancelar()){
           ventanaProfesorAgregar.dispose();
           return;
         }
-
-        
-        //Gestion eliminar Profesor
         
         // Abrir ventana: Eliminar Profesor (desde submenú)
         if (ventanaMenuProfesor != null && ae.getSource() == ventanaMenuProfesor.getjButtonMenuProfesorVEliminar()){
@@ -1005,6 +1010,22 @@ private void gestionarReportes() throws IOException {
         }
 
         System.out.println("No se encontró profesor con RUT " + target + ".");
+        return false;
+    }
+    
+    // true si ya existe un profesor con ese RUT en la lista
+    private boolean existeProfesorPorRut(String rut) {
+        if (rut == null) return false;
+        String target = rut.trim();
+        if (target.isEmpty()) return false;
+
+        for (int i = 0; i < this.listaProfesores.size(); i++) {
+            Profesor p = this.listaProfesores.get(i);
+            if (p != null && p.getRut() != null
+                    && p.getRut().trim().equalsIgnoreCase(target)) {
+                return true;
+            }
+        }
         return false;
     }
 
