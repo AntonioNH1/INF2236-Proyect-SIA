@@ -9,14 +9,15 @@ import com.mycompany.proyectosia.modelo.Asistencia;
 import com.mycompany.proyectosia.modelo.Alumno;
 
 import com.mycompany.proyectosia.vista.AgregarProfesorV;
-import com.mycompany.proyectosia.vista.GestionAlumnos.BuscarAlumnoV;
+import com.mycompany.proyectosia.vista.EliminarProfesorV;
 import com.mycompany.proyectosia.vista.GestionAlumnos.EliminarAlumnoV;
 import com.mycompany.proyectosia.vista.GestionAlumnosV;
 import com.mycompany.proyectosia.vista.GestionAsistencia.EliminarAsistenciaP;
 import com.mycompany.proyectosia.vista.GestionAsistencia.ModificarAsistenciaP;
 import com.mycompany.proyectosia.vista.GestionAsistencia.RegistrarAsistenciaP;
 import com.mycompany.proyectosia.vista.GestionAsistenciaV;
-import com.mycompany.proyectosia.vista.MenuProfesoresV;
+import com.mycompany.proyectosia.vista.MenuAsistenciaV;
+import com.mycompany.proyectosia.vista.MenuProfesorV;
 import com.mycompany.proyectosia.vista.gestionAlumnos.AgregarAlumnoV;
 import com.mycompany.proyectosia.vista.MenuV;
 import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoEditarP;
@@ -47,10 +48,12 @@ public class SistemaAsistenciaEscolar implements ActionListener{
     
     // ventanas
     private MenuV ventanaPrincipal;
-    private MenuProfesoresV ventanaProfesores;
+    private MenuAsistenciaV ventanaAsistenciaMenu;
     private GestionAlumnosV ventanaAlumnos;
     private GestionAsistenciaV ventanaAsistencia;
     private AgregarProfesorV ventanaProfesorAgregar;
+    private MenuProfesorV ventanaMenuProfesor;
+    private EliminarProfesorV ventanaEliminarProfesor;
     
     // ventanas GestionAlumnosV
     private AgregarAlumnoV ventanaAlumnoAgregar;
@@ -77,8 +80,8 @@ public class SistemaAsistenciaEscolar implements ActionListener{
         int opcionMenu;
         
         ventanaPrincipal = new MenuV();
-        ventanaPrincipal.getjButtonMenuVAgregarProfesores().addActionListener(this);
-        ventanaPrincipal.getjButtonMenuVModuloProfesores().addActionListener(this);
+        ventanaPrincipal.getjButtonMenuVModuloProfesor().addActionListener(this);
+        ventanaPrincipal.getjButtonMenuVModuloAsistencia().addActionListener(this);
         ventanaPrincipal.getjButtonMenuVSalir().addActionListener(this);
         ventanaPrincipal.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventanaPrincipal.setVisible(true);
@@ -142,21 +145,21 @@ public class SistemaAsistenciaEscolar implements ActionListener{
           return;
        }
         
-        if (ae.getSource() == ventanaPrincipal.getjButtonMenuVModuloProfesores()){
-            ventanaProfesores = new MenuProfesoresV();
+        if (ae.getSource() == ventanaPrincipal.getjButtonMenuVModuloAsistencia()){
+            ventanaAsistenciaMenu = new MenuAsistenciaV();
             // sensibilizar botones
-            ventanaProfesores.getjButtonMenuProfesoresVAlumnos().addActionListener(this);
-            ventanaProfesores.getjButtonMenuProfesoresVAsistencia().addActionListener(this);
-            ventanaProfesores.getjButtonMenuProfesoresVCancelar().addActionListener(this);
+            ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAlumnos().addActionListener(this);
+            ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAsistencia().addActionListener(this);
+            ventanaAsistenciaMenu.getjButtonMenuAsistenciaVCancelar().addActionListener(this);
             // mostrar ventana
-            ventanaProfesores.setVisible(true);
-            ventanaProfesores.setLocationRelativeTo(null);
+            ventanaAsistenciaMenu.setVisible(true);
+            ventanaAsistenciaMenu.setLocationRelativeTo(null);
         }
         
         
 
-        // GESTION VENTANA PROFESOR
-        if (ventanaProfesores != null && ae.getSource() == ventanaProfesores.getjButtonMenuProfesoresVAlumnos()){
+        // GESTION VENTANA ASISTENCIA
+        if (ventanaAsistenciaMenu != null && ae.getSource() == ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAlumnos()){
            ventanaAlumnos = new GestionAlumnosV();
            // sensibilizar botones
            ventanaAlumnos.getjComboBoxGestionAlumnosVOpciones().addActionListener(this);
@@ -168,14 +171,30 @@ public class SistemaAsistenciaEscolar implements ActionListener{
            return;
        }
         
-        // cerrar ventanaProfesores
-        if (ventanaProfesores !=null && ae.getSource() == ventanaProfesores.getjButtonMenuProfesoresVCancelar()){
-          ventanaProfesores.dispose();
+        // cerrar ventanaAsistencia
+        if (ventanaAsistenciaMenu !=null && ae.getSource() == ventanaAsistenciaMenu.getjButtonMenuAsistenciaVCancelar()){
+          ventanaAsistenciaMenu.dispose();
           return;
        }
         
+        
+        // Abrir submenú Módulo Profesores
+        if (ae.getSource() == ventanaPrincipal.getjButtonMenuVModuloProfesor()){
+         ventanaMenuProfesor = new MenuProfesorV();
+         ventanaMenuProfesor.getjButtonMenuProfesorVAgregar().addActionListener(this);
+         ventanaMenuProfesor.getjButtonMenuProfesorVEliminar().addActionListener(this);
+         ventanaMenuProfesor.getjButtonMenuProfesorVModificar().addActionListener(this);
+         ventanaMenuProfesor.getjButtonMenuProfesorVCancelar().addActionListener(this);
+         // mostrar
+         ventanaMenuProfesor.setVisible(true);
+         ventanaMenuProfesor.setLocationRelativeTo(null);
+         return;
+        }
+        
+        
+        
         // Gestion Agregar Profesor
-        if (ae.getSource() == ventanaPrincipal.getjButtonMenuVAgregarProfesores()){
+        if (ae.getSource() == ventanaMenuProfesor.getjButtonMenuProfesorVAgregar()){
             ventanaProfesorAgregar = new AgregarProfesorV();
             ventanaProfesorAgregar.ocultarjLabelAgregarProfesorVExito();
             // sensibilizar botones
@@ -190,16 +209,36 @@ public class SistemaAsistenciaEscolar implements ActionListener{
         if (ventanaProfesorAgregar !=null && ae.getSource() == ventanaProfesorAgregar.getjButtonAgregarProfesorVCancelar()){
           ventanaProfesorAgregar.dispose();
           return;
-       }
-        if (ventanaProfesorAgregar !=null && ae.getSource() == ventanaProfesorAgregar.getjButtonAgregarProfesorVCrear()){
-          insertarProfesor(ventanaProfesorAgregar.getjTextFieldAgregarProfesorVNombre(), ventanaProfesorAgregar.getjTextFieldAgregarProfesorVCurso(), ventanaProfesorAgregar.getjTextFieldAgregarProfesorVRut());
-          ventanaProfesorAgregar.mostrarjLabelAgregarProfesorVExito();
-          
+        }
+
+        
+        //Gestion eliminar Profesor
+        
+        // Abrir ventana: Eliminar Profesor (desde submenú)
+        if (ventanaMenuProfesor != null && ae.getSource() == ventanaMenuProfesor.getjButtonMenuProfesorVEliminar()){
+            ventanaEliminarProfesor = new EliminarProfesorV();
+            ventanaEliminarProfesor.getjButtonEliminarProfesorVEliminar().addActionListener(this);
+            ventanaEliminarProfesor.getjButtonEliminarProfesorVCancelar().addActionListener(this);
+            // mostrar
+            ventanaEliminarProfesor.setVisible(true);
+            ventanaEliminarProfesor.setLocationRelativeTo(null);
+            return;
+        }
+
+       
+        //cerrar ventana eliminar profesor
+        if (ventanaEliminarProfesor !=null && ae.getSource() == ventanaEliminarProfesor.getjButtonEliminarProfesorVCancelar()){
+          ventanaEliminarProfesor.dispose();
           return;
        }
         
         
-        
+        //cerrar submenu profesores
+        if (ventanaMenuProfesor != null && ae.getSource() == ventanaMenuProfesor.getjButtonMenuProfesorVCancelar()){
+            ventanaMenuProfesor.dispose();
+            return;
+        }
+
         
         
         // GESTION VENTANA ALUMNOS
@@ -208,6 +247,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
           return;
        }
         
+    
         // ventana gestion alumnos -> abrir agregar alumno
         if (ventanaAlumnos !=null && ae.getSource() == ventanaAlumnos.getjButtonGestionAlumnosVIr()){
           String opcionSeleccionada = (String) ventanaAlumnos.getjComboBoxGestionAlumnosVOpciones().getSelectedItem();
@@ -335,7 +375,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
           return;
         }
         
-        if (ae.getSource() == ventanaProfesores.getjButtonMenuProfesoresVAsistencia()){
+        if (ae.getSource() == ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAsistencia()){
            ventanaAsistencia = new GestionAsistenciaV();
            // sensibilizar botones
            ventanaAsistencia.getjButtonGestionAsistenciaVCancelar().addActionListener(this);

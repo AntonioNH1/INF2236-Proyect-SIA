@@ -32,10 +32,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonMenuProfesoresVAlumnos" min="-2" pref="195" max="-2" attributes="0"/>
+                          <Component id="jButtonMenuAsistenciaVAlumnos" min="-2" pref="195" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel2" pref="195" max="32767" attributes="0"/>
-                              <Component id="jButtonMenuProfesoresVAsistencia" max="32767" attributes="0"/>
+                              <Component id="jButtonMenuAsistenciaVAsistencia" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -44,7 +44,7 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="jButtonMenuProfesoresVCancelar" min="-2" max="-2" attributes="0"/>
+              <Component id="jButtonMenuAsistenciaVCancelar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -57,11 +57,11 @@
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButtonMenuProfesoresVAsistencia" min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="jButtonMenuAsistenciaVAsistencia" min="-2" pref="31" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Component id="jButtonMenuProfesoresVAlumnos" min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="jButtonMenuAsistenciaVAlumnos" min="-2" pref="31" max="-2" attributes="0"/>
               <EmptySpace pref="145" max="32767" attributes="0"/>
-              <Component id="jButtonMenuProfesoresVCancelar" min="-2" max="-2" attributes="0"/>
+              <Component id="jButtonMenuAsistenciaVCancelar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -104,7 +104,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonMenuProfesoresVAlumnos">
+    <Component class="javax.swing.JButton" name="jButtonMenuAsistenciaVAlumnos">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -120,10 +120,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMenuProfesoresVAlumnosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMenuAsistenciaVAlumnosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonMenuProfesoresVAsistencia">
+    <Component class="javax.swing.JButton" name="jButtonMenuAsistenciaVAsistencia">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -138,8 +138,11 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMenuAsistenciaVAsistenciaActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonMenuProfesoresVCancelar">
+    <Component class="javax.swing.JButton" name="jButtonMenuAsistenciaVCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>

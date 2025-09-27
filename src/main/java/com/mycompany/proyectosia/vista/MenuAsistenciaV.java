@@ -10,12 +10,12 @@ import javax.swing.JButton;
  *
  * @author geoff
  */
-public class MenuProfesoresV extends javax.swing.JFrame {
+public class MenuAsistenciaV extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuV
      */
-    public MenuProfesoresV() {
+    public MenuAsistenciaV() {
         initComponents();
     }
 
@@ -30,9 +30,9 @@ public class MenuProfesoresV extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButtonMenuProfesoresVAlumnos = new javax.swing.JButton();
-        jButtonMenuProfesoresVAsistencia = new javax.swing.JButton();
-        jButtonMenuProfesoresVCancelar = new javax.swing.JButton();
+        jButtonMenuAsistenciaVAlumnos = new javax.swing.JButton();
+        jButtonMenuAsistenciaVAsistencia = new javax.swing.JButton();
+        jButtonMenuAsistenciaVCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,22 +50,27 @@ public class MenuProfesoresV extends javax.swing.JFrame {
         jLabel2.setText("Opciones");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButtonMenuProfesoresVAlumnos.setBackground(new java.awt.Color(204, 204, 204));
-        jButtonMenuProfesoresVAlumnos.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
-        jButtonMenuProfesoresVAlumnos.setText("Gestionar Alumnos");
-        jButtonMenuProfesoresVAlumnos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButtonMenuProfesoresVAlumnos.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMenuAsistenciaVAlumnos.setBackground(new java.awt.Color(204, 204, 204));
+        jButtonMenuAsistenciaVAlumnos.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
+        jButtonMenuAsistenciaVAlumnos.setText("Gestionar Alumnos");
+        jButtonMenuAsistenciaVAlumnos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonMenuAsistenciaVAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMenuProfesoresVAlumnosActionPerformed(evt);
+                jButtonMenuAsistenciaVAlumnosActionPerformed(evt);
             }
         });
 
-        jButtonMenuProfesoresVAsistencia.setBackground(new java.awt.Color(204, 204, 204));
-        jButtonMenuProfesoresVAsistencia.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
-        jButtonMenuProfesoresVAsistencia.setText("Gestionar Asistencia");
-        jButtonMenuProfesoresVAsistencia.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonMenuAsistenciaVAsistencia.setBackground(new java.awt.Color(204, 204, 204));
+        jButtonMenuAsistenciaVAsistencia.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
+        jButtonMenuAsistenciaVAsistencia.setText("Gestionar Asistencia");
+        jButtonMenuAsistenciaVAsistencia.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonMenuAsistenciaVAsistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenuAsistenciaVAsistenciaActionPerformed(evt);
+            }
+        });
 
-        jButtonMenuProfesoresVCancelar.setText("Cancelar");
+        jButtonMenuAsistenciaVCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,14 +84,14 @@ public class MenuProfesoresV extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(220, 220, 220)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonMenuProfesoresVAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonMenuAsistenciaVAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                                .addComponent(jButtonMenuProfesoresVAsistencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(jButtonMenuAsistenciaVAsistencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(134, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonMenuProfesoresVCancelar)
+                .addComponent(jButtonMenuAsistenciaVCancelar)
                 .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
@@ -97,37 +102,43 @@ public class MenuProfesoresV extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonMenuProfesoresVAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonMenuAsistenciaVAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonMenuProfesoresVAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonMenuAsistenciaVAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(jButtonMenuProfesoresVCancelar)
+                .addComponent(jButtonMenuAsistenciaVCancelar)
                 .addGap(44, 44, 44))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonMenuProfesoresVAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuProfesoresVAlumnosActionPerformed
+    private void jButtonMenuAsistenciaVAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuAsistenciaVAlumnosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonMenuProfesoresVAlumnosActionPerformed
+    }//GEN-LAST:event_jButtonMenuAsistenciaVAlumnosActionPerformed
+
+    private void jButtonMenuAsistenciaVAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuAsistenciaVAsistenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonMenuAsistenciaVAsistenciaActionPerformed
     
-    public JButton getjButtonMenuProfesoresVAlumnos(){
-        return jButtonMenuProfesoresVAlumnos;
+    public JButton getjButtonMenuAsistenciaVAlumnos(){
+        return jButtonMenuAsistenciaVAlumnos;
     }
     
-    public JButton getjButtonMenuProfesoresVAsistencia(){
-        return jButtonMenuProfesoresVAsistencia;
+    public JButton getjButtonMenuAsistenciaVAsistencia(){
+        return jButtonMenuAsistenciaVAsistencia;
     }
     
-    public JButton getjButtonMenuProfesoresVCancelar(){
-        return jButtonMenuProfesoresVCancelar;
+    public JButton getjButtonMenuAsistenciaVCancelar(){
+        return jButtonMenuAsistenciaVCancelar;
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonMenuProfesoresVAlumnos;
-    private javax.swing.JButton jButtonMenuProfesoresVAsistencia;
-    private javax.swing.JButton jButtonMenuProfesoresVCancelar;
+    private javax.swing.JButton jButtonMenuAsistenciaVAlumnos;
+    private javax.swing.JButton jButtonMenuAsistenciaVAsistencia;
+    private javax.swing.JButton jButtonMenuAsistenciaVCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
