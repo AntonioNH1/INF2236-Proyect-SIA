@@ -18,6 +18,7 @@ import com.mycompany.proyectosia.vista.MenuAsistenciaV;
 import com.mycompany.proyectosia.vista.MenuProfesorV;
 import com.mycompany.proyectosia.vista.gestionAlumnos.AgregarAlumnoV;
 import com.mycompany.proyectosia.vista.MenuV;
+import com.mycompany.proyectosia.vista.ModificarProfesorV;
 import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoEditarP;
 import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoRellenadoP;
 import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoV;
@@ -60,6 +61,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
     private AgregarProfesorV ventanaProfesorAgregar;
     private MenuProfesorV ventanaMenuProfesor;
     private EliminarProfesorV ventanaEliminarProfesor;
+    private ModificarProfesorV ventanaModificarProfesor;
     
     // ventanas GestionAlumnosV
     private AgregarAlumnoV ventanaAlumnoAgregar;
@@ -411,6 +413,34 @@ public class SistemaAsistenciaEscolar implements ActionListener{
             ventanaProfesorAgregar.setLocationRelativeTo(null);
         }
         
+        // ---- Botón CREAR en Agregar Profesor ----
+        if (ventanaProfesorAgregar != null
+                && ae.getSource() == ventanaProfesorAgregar.getjButtonAgregarProfesorVCrear()) {
+
+            String nombre = ventanaProfesorAgregar.getjTextFieldAgregarProfesorVNombre().getText();
+            String curso  = ventanaProfesorAgregar.getjTextFieldAgregarProfesorVCurso().getText();
+            String rut    = ventanaProfesorAgregar.getjTextFieldAgregarProfesorVRut().getText();
+
+            if (nombre == null || curso == null || rut == null
+                    || nombre.trim().isEmpty() || curso.trim().isEmpty() || rut.trim().isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(ventanaProfesorAgregar,
+                        "Nombre, Curso y RUT son obligatorios.",
+                        "Datos incompletos", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            insertarProfesor(nombre.trim(), rut.trim(), curso.trim());
+
+            javax.swing.JOptionPane.showMessageDialog(ventanaProfesorAgregar,
+                    "Profesor agregado correctamente.");
+
+            // Limpia campos y (opcional) muestra/oculta el label de éxito
+            ventanaProfesorAgregar.getjTextFieldAgregarProfesorVNombre().setText("");
+            ventanaProfesorAgregar.getjTextFieldAgregarProfesorVCurso().setText("");
+            ventanaProfesorAgregar.getjTextFieldAgregarProfesorVRut().setText("");
+            ventanaProfesorAgregar.mostrarjLabelAgregarProfesorVExito();
+            return;
+        }
+        
         // cerrar ventana Agregar Profesor
         if (ventanaProfesorAgregar !=null && ae.getSource() == ventanaProfesorAgregar.getjButtonAgregarProfesorVCancelar()){
           ventanaProfesorAgregar.dispose();
@@ -431,12 +461,88 @@ public class SistemaAsistenciaEscolar implements ActionListener{
             return;
         }
 
-       
+       // ---- Botón ELIMINAR en Eliminar Profesor ----
+        if (ventanaEliminarProfesor != null
+                && ae.getSource() == ventanaEliminarProfesor.getjButtonEliminarProfesorVEliminar()) {
+
+            String rut = ventanaEliminarProfesor.getjTextFieldRutProfesor().getText();
+
+            if (rut == null || rut.trim().isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(ventanaEliminarProfesor,
+                        "Ingrese el RUT del profesor a eliminar.",
+                        "Falta RUT", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            boolean ok = eliminarProfesorPorRut(rut);
+            if (ok) {
+                javax.swing.JOptionPane.showMessageDialog(ventanaEliminarProfesor, "Profesor eliminado.");
+                ventanaEliminarProfesor.getjTextFieldRutProfesor().setText("");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(ventanaEliminarProfesor,
+                        "No se encontró un profesor con ese RUT.",
+                        "No existe", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+            return;
+        }
+
         //cerrar ventana eliminar profesor
         if (ventanaEliminarProfesor !=null && ae.getSource() == ventanaEliminarProfesor.getjButtonEliminarProfesorVCancelar()){
           ventanaEliminarProfesor.dispose();
           return;
        }
+        
+        // Abrir ventana: Modificar Profesor (desde submenú)
+        if (ventanaMenuProfesor != null && ae.getSource() == ventanaMenuProfesor.getjButtonMenuProfesorVModificar()){
+            ventanaModificarProfesor = new ModificarProfesorV();
+            ventanaModificarProfesor.getjButtonMenuModificarProfesorVModificar().addActionListener(this);
+            ventanaModificarProfesor.getjButtonMenuModificarProfesorVCancelar().addActionListener(this);
+            
+            // Limpia campos cada vez que se abre
+            ventanaModificarProfesor.getjTextFieldRutProfesorModificar().setText("");
+            ventanaModificarProfesor.getjTextFieldCursoProfesorModificar().setText("");
+
+            // mostrar
+            ventanaModificarProfesor.setVisible(true);
+            ventanaModificarProfesor.setLocationRelativeTo(null);
+            return;
+        }
+        
+        //Modificar profesor
+        if (ventanaModificarProfesor != null
+                && ae.getSource() == ventanaModificarProfesor.getjButtonMenuModificarProfesorVModificar()) {
+
+            String rut   = ventanaModificarProfesor.getjTextFieldRutProfesorModificar().getText();
+            String curso = ventanaModificarProfesor.getjTextFieldCursoProfesorModificar().getText();
+
+            if (rut == null || curso == null || rut.trim().isEmpty() || curso.trim().isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(ventanaModificarProfesor,
+                        "Ingrese RUT y el nuevo curso.",
+                        "Datos incompletos", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            boolean ok = modificarProfesorCurso(rut, curso);
+            if (ok) {
+                javax.swing.JOptionPane.showMessageDialog(ventanaModificarProfesor, "Profesor modificado correctamente.");
+                ventanaModificarProfesor.getjTextFieldRutProfesorModificar().setText("");
+                ventanaModificarProfesor.getjTextFieldCursoProfesorModificar().setText("");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(ventanaModificarProfesor,
+                        "No se encontró un profesor con ese RUT.",
+                        "No existe", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+            return;
+        }
+
+        // ---- Botón CANCELAR en Modificar Profesor ----
+        if (ventanaModificarProfesor != null
+                && ae.getSource() == ventanaModificarProfesor.getjButtonMenuModificarProfesorVCancelar()) {
+            ventanaModificarProfesor.dispose(); // o setVisible(false)
+            return;
+        }
+
+        
         
         
         //cerrar submenu profesores
@@ -501,6 +607,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
 */
        }
         
+        //Crear Alumno
         if (ventanaAlumnoAgregar !=null && ae.getSource() == ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCrear()){
           if(insertarAlumno(ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVNombre(), ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVCurso(), ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVRut())){
               ventanaAlumnoAgregar.mostrarjLabelAgregarAlumnoVExito();
@@ -829,6 +936,8 @@ private void gestionarReportes() throws IOException {
     
     
     
+    
+    
     private void insertarProfesor(String nombre, String rut, String curso) {
         System.out.println("\n--- Nuevo Profesor ---");
 
@@ -857,6 +966,49 @@ private void gestionarReportes() throws IOException {
                     nuevoProfesor.getCursoJefatura() + ".");
         }
     }
+    
+    // Elimina el primer profesor cuyo RUT coincida 
+    private boolean eliminarProfesorPorRut(String rut) {
+        if (rut == null) return false;
+        String target = rut.trim();
+        if (target.isEmpty()) return false;
+
+        for (int i = 0; i < this.listaProfesores.size(); i++) {
+            Profesor p = this.listaProfesores.get(i);
+            if (p.getRut() != null && p.getRut().equalsIgnoreCase(target)) {
+                this.listaProfesores.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
+    //Modifica el curso del profesor
+    private boolean modificarProfesorCurso(String rut, String nuevoCurso) {
+        if (rut == null || nuevoCurso == null) return false;
+
+        String target = rut.trim();
+        String nuevo  = nuevoCurso.trim();
+        if (target.isEmpty() || nuevo.isEmpty()) return false;
+
+        for (int i = 0; i < this.listaProfesores.size(); i++) {
+            Profesor p = this.listaProfesores.get(i);
+            String r = (p != null) ? p.getRut() : null;
+
+            if (r != null && r.equalsIgnoreCase(target)) {
+                p.setCursoJefatura(nuevo);
+                // opcional, mismo estilo de feedback que en eliminar:
+                System.out.println("Profesor con RUT " + target + " actualizado a curso " + nuevo + ".");
+                return true;
+            }
+        }
+
+        System.out.println("No se encontró profesor con RUT " + target + ".");
+        return false;
+    }
+
+
 
      
 private void cargarDatosIniciales() {
