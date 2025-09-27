@@ -5,6 +5,7 @@
 package com.mycompany.proyectosia.vista;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 /**
  *
@@ -126,6 +127,10 @@ public JButton getjButtonEliminarProfesorVCancelar(){
 
 public JButton getjButtonEliminarProfesorVEliminar(){
     return jButtonEliminarProfesorVEliminar;
+}
+
+public JTextField getjTextFieldRutProfesor(){
+    return jTextFieldRutProfesor;
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,6 +5,7 @@
 package com.mycompany.proyectosia.vista;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 /**
  *
@@ -59,6 +60,12 @@ public class AgregarProfesorV extends javax.swing.JFrame {
 
         jLabel4.setText("Ingrese los datos del Profesor:");
 
+        jTextFieldAgregarProfesorVNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldAgregarProfesorVNombreActionPerformed(evt);
+            }
+        });
+
         jTextFieldAgregarProfesorVRut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldAgregarProfesorVRutActionPerformed(evt);
@@ -88,16 +95,18 @@ public class AgregarProfesorV extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldAgregarProfesorVCurso)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel3))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldAgregarProfesorVCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                             .addComponent(jTextFieldAgregarProfesorVRut)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldAgregarProfesorVNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldAgregarProfesorVNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                     .addComponent(ocultarjLabelAgregarProfesorVExito))
                 .addContainerGap(93, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -127,16 +136,17 @@ public class AgregarProfesorV extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldAgregarProfesorVNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextFieldAgregarProfesorVCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldAgregarProfesorVRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldAgregarProfesorVCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldAgregarProfesorVRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonAgregarProfesorVCrear)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(ocultarjLabelAgregarProfesorVExito)
                 .addGap(11, 11, 11)
                 .addComponent(jButtonAgregarProfesorVCancelar)
@@ -150,6 +160,10 @@ public class AgregarProfesorV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAgregarProfesorVRutActionPerformed
 
+    private void jTextFieldAgregarProfesorVNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAgregarProfesorVNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAgregarProfesorVNombreActionPerformed
+
     // sensibilizacion de botones
     public JButton getjButtonAgregarProfesorVCancelar(){
         return jButtonAgregarProfesorVCancelar;
@@ -159,16 +173,16 @@ public class AgregarProfesorV extends javax.swing.JFrame {
         return jButtonAgregarProfesorVCrear;
     }
     
-    public String getjTextFieldAgregarProfesorVNombre(){
-        return jTextFieldAgregarProfesorVNombre.getText();
+    public JTextField getjTextFieldAgregarProfesorVNombre(){
+        return jTextFieldAgregarProfesorVNombre;
     }
     
-    public String getjTextFieldAgregarProfesorVCurso(){
-        return jTextFieldAgregarProfesorVCurso.getText();
+    public JTextField getjTextFieldAgregarProfesorVCurso(){
+        return jTextFieldAgregarProfesorVCurso;
     }
         
-    public String getjTextFieldAgregarProfesorVRut(){
-        return jTextFieldAgregarProfesorVRut.getText();
+    public JTextField getjTextFieldAgregarProfesorVRut(){
+        return jTextFieldAgregarProfesorVRut;
     }
     
     public void ocultarjLabelAgregarProfesorVExito(){

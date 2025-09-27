@@ -4,6 +4,9 @@
  */
 package com.mycompany.proyectosia.vista;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author anton
@@ -26,24 +29,154 @@ public class ModificarProfesorV extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextFieldRutProfesor = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonMenuModificarProfesorVCancelar1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldRutProfesorModificar = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldCursoProfesorModificar = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jButtonMenuModificarProfesorVCancelar = new javax.swing.JButton();
+        jButtonMenuModificarProfesorVModificar = new javax.swing.JButton();
+
+        jTextFieldRutProfesor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldRutProfesorActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Ingrese el RUT del profesor:");
+
+        jButtonMenuModificarProfesorVCancelar1.setText("Cancelar");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel3.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Modificar Profesor");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel3.setDoubleBuffered(true);
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jTextFieldRutProfesorModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldRutProfesorModificarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Ingrese el RUT del profesor:");
+
+        jTextFieldCursoProfesorModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCursoProfesorModificarActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Ingrese el curso a cambiar:");
+
+        jButtonMenuModificarProfesorVCancelar.setText("Cancelar");
+
+        jButtonMenuModificarProfesorVModificar.setText("Modificar");
+        jButtonMenuModificarProfesorVModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenuModificarProfesorVModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonMenuModificarProfesorVCancelar)
+                .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldRutProfesorModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextFieldCursoProfesorModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(jButtonMenuModificarProfesorVModificar)))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldRutProfesorModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldCursoProfesorModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonMenuModificarProfesorVModificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jButtonMenuModificarProfesorVCancelar)
+                .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextFieldRutProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRutProfesorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldRutProfesorActionPerformed
 
+    private void jTextFieldRutProfesorModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRutProfesorModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldRutProfesorModificarActionPerformed
 
+    private void jTextFieldCursoProfesorModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCursoProfesorModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCursoProfesorModificarActionPerformed
+
+    private void jButtonMenuModificarProfesorVModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuModificarProfesorVModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonMenuModificarProfesorVModificarActionPerformed
+
+    
+    public JButton getjButtonMenuModificarProfesorVCancelar(){
+        return jButtonMenuModificarProfesorVCancelar;
+    }
+    
+    public JTextField getjTextFieldCursoProfesorModificar(){
+        return jTextFieldCursoProfesorModificar;
+    }
+    
+    public JTextField getjTextFieldRutProfesorModificar(){
+        return jTextFieldRutProfesorModificar;
+    }
+    
+    public JButton getjButtonMenuModificarProfesorVModificar() {
+        return jButtonMenuModificarProfesorVModificar;
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonMenuModificarProfesorVCancelar;
+    private javax.swing.JButton jButtonMenuModificarProfesorVCancelar1;
+    private javax.swing.JButton jButtonMenuModificarProfesorVModificar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTextFieldCursoProfesorModificar;
+    private javax.swing.JTextField jTextFieldRutProfesor;
+    private javax.swing.JTextField jTextFieldRutProfesorModificar;
     // End of variables declaration//GEN-END:variables
 }
