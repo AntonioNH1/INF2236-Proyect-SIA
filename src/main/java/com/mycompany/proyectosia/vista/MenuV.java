@@ -33,6 +33,7 @@ public class MenuV extends javax.swing.JFrame {
         jButtonMenuVModuloProfesor = new javax.swing.JButton();
         jButtonMenuVModuloAsistencia = new javax.swing.JButton();
         jButtonMenuVSalir = new javax.swing.JButton();
+        jButtonMenuVGestionarAlumnos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,7 +53,7 @@ public class MenuV extends javax.swing.JFrame {
 
         jButtonMenuVModuloProfesor.setBackground(new java.awt.Color(204, 204, 204));
         jButtonMenuVModuloProfesor.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
-        jButtonMenuVModuloProfesor.setText("Modulo Profesor");
+        jButtonMenuVModuloProfesor.setText("Gestión de Profesor");
         jButtonMenuVModuloProfesor.setToolTipText("");
         jButtonMenuVModuloProfesor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonMenuVModuloProfesor.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +74,16 @@ public class MenuV extends javax.swing.JFrame {
 
         jButtonMenuVSalir.setText("Salir");
 
+        jButtonMenuVGestionarAlumnos.setBackground(new java.awt.Color(204, 204, 204));
+        jButtonMenuVGestionarAlumnos.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
+        jButtonMenuVGestionarAlumnos.setText("Gestión de Alumnos");
+        jButtonMenuVGestionarAlumnos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonMenuVGestionarAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenuVGestionarAlumnosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,10 +95,12 @@ public class MenuV extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(220, 220, 220)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                            .addComponent(jButtonMenuVModuloProfesor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonMenuVModuloAsistencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonMenuVModuloAsistencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                .addComponent(jButtonMenuVModuloProfesor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonMenuVGestionarAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))))
                 .addContainerGap(134, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -101,13 +114,19 @@ public class MenuV extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(jButtonMenuVModuloProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jButtonMenuVModuloAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jButtonMenuVSalir)
-                .addGap(44, 44, 44))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonMenuVSalir)
+                        .addGap(73, 73, 73))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonMenuVGestionarAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonMenuVModuloAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(90, Short.MAX_VALUE))))
         );
 
         pack();
@@ -120,6 +139,10 @@ public class MenuV extends javax.swing.JFrame {
     private void jButtonMenuVModuloProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuVModuloProfesorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonMenuVModuloProfesorActionPerformed
+
+    private void jButtonMenuVGestionarAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuVGestionarAlumnosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonMenuVGestionarAlumnosActionPerformed
     
     public JButton getjButtonMenuVModuloProfesor(){
         return jButtonMenuVModuloProfesor;
@@ -129,11 +152,17 @@ public class MenuV extends javax.swing.JFrame {
         return jButtonMenuVModuloAsistencia;
     }
     
+    public JButton getjButtonMenuVGestionarAlumnos(){
+        return jButtonMenuVGestionarAlumnos;
+    }
+    
     public JButton getjButtonMenuVSalir(){
         return jButtonMenuVSalir;
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonMenuVGestionarAlumnos;
     private javax.swing.JButton jButtonMenuVModuloAsistencia;
     private javax.swing.JButton jButtonMenuVModuloProfesor;
     private javax.swing.JButton jButtonMenuVSalir;

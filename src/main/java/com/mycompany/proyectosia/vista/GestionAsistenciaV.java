@@ -5,7 +5,6 @@
 package com.mycompany.proyectosia.vista;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 
 /**
  *
@@ -30,11 +29,9 @@ public class GestionAsistenciaV extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jComboBoxGestionAsistenciaVSeleccion = new javax.swing.JComboBox<>();
-        jButtonGestionAsistenciaVIr = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jButtonGestionAsistenciaVGestionPorCurso = new javax.swing.JButton();
         jButtonGestionAsistenciaVCancelar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jButtonGestionAsistenciaVModificarFechaAsistencia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,23 +41,14 @@ public class GestionAsistenciaV extends javax.swing.JFrame {
         jLabel3.setText("Menú de gestion de asistencia");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jComboBoxGestionAsistenciaVSeleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registrar Asistencia", "Modificar Asistencia", "Eliminar Asistencia", " " }));
-        jComboBoxGestionAsistenciaVSeleccion.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGestionAsistenciaVGestionPorCurso.setBackground(new java.awt.Color(204, 204, 204));
+        jButtonGestionAsistenciaVGestionPorCurso.setText("Gestion por curso");
+        jButtonGestionAsistenciaVGestionPorCurso.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonGestionAsistenciaVGestionPorCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxGestionAsistenciaVSeleccionActionPerformed(evt);
+                jButtonGestionAsistenciaVGestionPorCursoActionPerformed(evt);
             }
         });
-
-        jButtonGestionAsistenciaVIr.setBackground(new java.awt.Color(204, 204, 204));
-        jButtonGestionAsistenciaVIr.setText("ir");
-        jButtonGestionAsistenciaVIr.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButtonGestionAsistenciaVIr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGestionAsistenciaVIrActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Opcion:");
 
         jButtonGestionAsistenciaVCancelar.setText("Cancelar");
         jButtonGestionAsistenciaVCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -69,10 +57,12 @@ public class GestionAsistenciaV extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("dd-mm-yyyy");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGestionAsistenciaVModificarFechaAsistencia.setBackground(new java.awt.Color(204, 204, 204));
+        jButtonGestionAsistenciaVModificarFechaAsistencia.setText("Modificar fecha asistencia");
+        jButtonGestionAsistenciaVModificarFechaAsistencia.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonGestionAsistenciaVModificarFechaAsistencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jButtonGestionAsistenciaVModificarFechaAsistenciaActionPerformed(evt);
             }
         });
 
@@ -90,16 +80,10 @@ public class GestionAsistenciaV extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBoxGestionAsistenciaVSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonGestionAsistenciaVIr, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(117, 117, 117)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonGestionAsistenciaVModificarFechaAsistencia, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(jButtonGestionAsistenciaVGestionPorCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -107,15 +91,11 @@ public class GestionAsistenciaV extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxGestionAsistenciaVSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonGestionAsistenciaVIr))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addComponent(jButtonGestionAsistenciaVModificarFechaAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jButtonGestionAsistenciaVGestionPorCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jButtonGestionAsistenciaVCancelar)
                 .addGap(26, 26, 26))
         );
@@ -123,40 +103,35 @@ public class GestionAsistenciaV extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBoxGestionAsistenciaVSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGestionAsistenciaVSeleccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxGestionAsistenciaVSeleccionActionPerformed
-
-    private void jButtonGestionAsistenciaVIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionAsistenciaVIrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonGestionAsistenciaVIrActionPerformed
-
     private void jButtonGestionAsistenciaVCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionAsistenciaVCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonGestionAsistenciaVCancelarActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jButtonGestionAsistenciaVGestionPorCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionAsistenciaVGestionPorCursoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jButtonGestionAsistenciaVGestionPorCursoActionPerformed
+
+    private void jButtonGestionAsistenciaVModificarFechaAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionAsistenciaVModificarFechaAsistenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonGestionAsistenciaVModificarFechaAsistenciaActionPerformed
 
     public JButton getjButtonGestionAsistenciaVCancelar(){
         return jButtonGestionAsistenciaVCancelar;
     }
     
-    public JButton getjButtonGestionAsistenciaVIr(){
-        return jButtonGestionAsistenciaVIr;
+    public JButton getjButtonGestionAsistenciaVGestionPorCurso(){
+        return jButtonGestionAsistenciaVGestionPorCurso;
     }
     
-    public JComboBox getjComboBoxGestionAsistenciaVSeleccion(){
-        return jComboBoxGestionAsistenciaVSeleccion;
+    public JButton getjButtonGestionAsistenciaVModificarFechaAsistencia(){
+        return jButtonGestionAsistenciaVModificarFechaAsistencia;
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGestionAsistenciaVCancelar;
-    private javax.swing.JButton jButtonGestionAsistenciaVIr;
-    private javax.swing.JComboBox<String> jComboBoxGestionAsistenciaVSeleccion;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jButtonGestionAsistenciaVGestionPorCurso;
+    private javax.swing.JButton jButtonGestionAsistenciaVModificarFechaAsistencia;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

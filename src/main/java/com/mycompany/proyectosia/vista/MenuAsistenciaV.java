@@ -121,9 +121,6 @@ public class MenuAsistenciaV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonMenuAsistenciaVAsistenciaActionPerformed
     
-    public JButton getjButtonMenuAsistenciaVAlumnos(){
-        return jButtonMenuAsistenciaVAlumnos;
-    }
     
     public JButton getjButtonMenuAsistenciaVAsistencia(){
         return jButtonMenuAsistenciaVAsistencia;
