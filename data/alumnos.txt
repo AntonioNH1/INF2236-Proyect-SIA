@@ -1,4 +1,7 @@
+11;Camilo Ceferino;Quinto basico
+22;Constanza Gutierrez;Quinto basico
+55;Romina Reyes;Septimo basico
 19.888.777-6;Pedro Soto;Segundo medio
-20.222.333-4;Ana Lopez;Cuarto basico
+20.222.333-4;Anamalia Lupin;Sexto basico
 20.111.222-3;Juan Perez;Cuarto basico
 19.777.666-5;Sofía Castro;Segundo medio

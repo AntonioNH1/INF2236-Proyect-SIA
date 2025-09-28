@@ -4,15 +4,15 @@
 
 package com.mycompany.proyectosia.controlador;
 
-import com.mycompany.proyectosia.GenerarReportes.GenerarAlumnoV;
-import com.mycompany.proyectosia.GenerarReportes.GenerarCursoV;
+import com.mycompany.proyectosia.vista.GenerarReportes.GenerarAlumnoV;
+import com.mycompany.proyectosia.vista.GenerarReportes.GenerarCursoV;
 import com.mycompany.proyectosia.modelo.Profesor;
 import com.mycompany.proyectosia.modelo.Asistencia;
 import com.mycompany.proyectosia.modelo.Alumno;
 import com.mycompany.proyectosia.modelo.ReportePorAlumno;
 import com.mycompany.proyectosia.modelo.ReportePorCurso;
-import com.mycompany.proyectosia.vista.AgregarProfesorV;
-import com.mycompany.proyectosia.vista.EliminarProfesorV;
+import com.mycompany.proyectosia.vista.GestionProfesor.AgregarProfesorV;
+import com.mycompany.proyectosia.vista.GestionProfesor.EliminarProfesorV;
 import com.mycompany.proyectosia.vista.GestionAlumnos.EliminarAlumnoV;
 import com.mycompany.proyectosia.vista.GestionAlumnosV;
 import com.mycompany.proyectosia.vista.GestionAsistencia.GenerarReportesV;
@@ -25,7 +25,10 @@ import com.mycompany.proyectosia.vista.MenuAsistenciaV;
 import com.mycompany.proyectosia.vista.MenuProfesorV;
 import com.mycompany.proyectosia.vista.gestionAlumnos.AgregarAlumnoV;
 import com.mycompany.proyectosia.vista.MenuV;
-import com.mycompany.proyectosia.vista.ModificarProfesorV;
+import com.mycompany.proyectosia.vista.GestionProfesor.ModificarProfesorV;
+import com.mycompany.proyectosia.vista.InicioSesion.InicioSesionAdministradorP;
+import com.mycompany.proyectosia.vista.InicioSesion.InicioSesionProfesorP;
+import com.mycompany.proyectosia.vista.InicioSesion.InicioSesionV;
 import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoEditarP;
 import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoRellenadoP;
 import com.mycompany.proyectosia.vista.gestionAlumnos.ModificarAlumnoV;
@@ -72,6 +75,19 @@ public class SistemaAsistenciaEscolar implements ActionListener{
     private MenuProfesorV ventanaMenuProfesor;
     private EliminarProfesorV ventanaEliminarProfesor;
     private ModificarProfesorV ventanaModificarProfesor;
+    
+    // ventanas InicioSesionV
+    private InicioSesionV ventanaInicioSesion;
+    private InicioSesionAdministradorP panelLoginAdmin;
+    private InicioSesionProfesorP panelLoginProfesor;
+    
+    // Estado de la sesión actual
+    private Profesor profesorLogueado = null;
+    private boolean esAdminLogueado = false;
+    private static final String ADMIN_PASSWORD = "admin"; // <- La contraseña del admin !!!!
+    
+    // Almacena la acción a ejecutar después de un login exitoso
+    private Runnable accionPostLogin;
     
     // ventanas GestionAlumnosV
     private AgregarAlumnoV ventanaAlumnoAgregar;
@@ -341,6 +357,20 @@ public class SistemaAsistenciaEscolar implements ActionListener{
         ventanaPrincipal.getjButtonMenuVGestionarAlumnos().addActionListener(this);
         ventanaPrincipal.getjButtonMenuVSalir().addActionListener(this);
         ventanaPrincipal.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        ventanaPrincipal.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        // Este listener ahora solo delega la acción al controlador.
+        ventanaPrincipal.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                // Llama al mismo método que el botón "Salir"
+                cerrarAplicacion();
+            }
+        });
+        
+        
+        
         ventanaPrincipal.setVisible(true);
         ventanaPrincipal.setLocationRelativeTo(null);
         
@@ -396,44 +426,93 @@ public class SistemaAsistenciaEscolar implements ActionListener{
 public void actionPerformed(ActionEvent ae) {
 
     // 1: GESTIÓN DE LA VENTANA PRINCIPAL 
-
+    
+    if (ae.getSource() == ventanaPrincipal.getjButtonMenuVSalir()) {
+        // En lugar de solo dispose(), ejecutamos la lógica de cierre completo.
+        cerrarAplicacion();
+        return;
+    }
+    
     if (ae.getSource() == ventanaPrincipal.getjButtonMenuVSalir()) {
         ventanaPrincipal.dispose();
         return;
     }
 
     if (ae.getSource() == ventanaPrincipal.getjButtonMenuVGestionarAlumnos()) {
-        ventanaAlumnos = new GestionAlumnosV();
-        // Sensibilizar botones
-        ventanaAlumnos.getjButtonGestionAlumnosVIr().addActionListener(this);
-        ventanaAlumnos.getjButtonGestionAlumnosVCancelar().addActionListener(this);
-        // Mostrar ventana
-        ventanaAlumnos.setVisible(true);
-        ventanaAlumnos.setLocationRelativeTo(null);
+        mostrarLoginAdmin(() -> {
+            ventanaAlumnos = new GestionAlumnosV();
+            ventanaAlumnos.getjButtonGestionAlumnosVIr().addActionListener(this);
+            ventanaAlumnos.getjButtonGestionAlumnosVCancelar().addActionListener(this);
+            ventanaAlumnos.setVisible(true);
+            ventanaAlumnos.setLocationRelativeTo(null);
+        });
         return;
     }
 
     if (ae.getSource() == ventanaPrincipal.getjButtonMenuVModuloAsistencia()) {
-        ventanaAsistenciaMenu = new MenuAsistenciaV();
-        // Sensibilizar botones
-        ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAsistencia().addActionListener(this);
-        ventanaAsistenciaMenu.getjButtonGenerarReportesVir().addActionListener(this);
-        ventanaAsistenciaMenu.getjButtonMenuAsistenciaVCancelar().addActionListener(this);
-        // Mostrar ventana
-        ventanaAsistenciaMenu.setVisible(true);
-        ventanaAsistenciaMenu.setLocationRelativeTo(null);
+        mostrarLoginProfesor(() -> {
+            // Esta es la acción que se ejecutará después de un login exitoso
+            ventanaAsistenciaMenu = new MenuAsistenciaV();
+            ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAsistencia().addActionListener(this);
+            ventanaAsistenciaMenu.getjButtonGenerarReportesVir().addActionListener(this);
+            ventanaAsistenciaMenu.getjButtonMenuAsistenciaVCancelar().addActionListener(this);
+            ventanaAsistenciaMenu.setVisible(true);
+            ventanaAsistenciaMenu.setLocationRelativeTo(null);
+        });
         return;
     }
 
     if (ae.getSource() == ventanaPrincipal.getjButtonMenuVModuloProfesor()) {
-        ventanaMenuProfesor = new MenuProfesorV();
-        ventanaMenuProfesor.getjButtonMenuProfesorVAgregar().addActionListener(this);
-        ventanaMenuProfesor.getjButtonMenuProfesorVEliminar().addActionListener(this);
-        ventanaMenuProfesor.getjButtonMenuProfesorVModificar().addActionListener(this);
-        ventanaMenuProfesor.getjButtonMenuProfesorVCancelar().addActionListener(this);
-        // Mostrar
-        ventanaMenuProfesor.setVisible(true);
-        ventanaMenuProfesor.setLocationRelativeTo(null);
+        mostrarLoginAdmin(() -> {
+            // Esta es la acción que se ejecutará después de un login exitoso
+            ventanaMenuProfesor = new MenuProfesorV();
+            ventanaMenuProfesor.getjButtonMenuProfesorVAgregar().addActionListener(this);
+            ventanaMenuProfesor.getjButtonMenuProfesorVEliminar().addActionListener(this);
+            ventanaMenuProfesor.getjButtonMenuProfesorVModificar().addActionListener(this);
+            ventanaMenuProfesor.getjButtonMenuProfesorVCancelar().addActionListener(this);
+            ventanaMenuProfesor.setVisible(true);
+            ventanaMenuProfesor.setLocationRelativeTo(null);
+        });
+        return;
+    }
+    
+        // --- NUEVO: Lógica para los botones de la ventana de login ---
+    if (panelLoginAdmin != null && ae.getSource() == panelLoginAdmin.getjButtonIngresarAdmin()) {
+        String password = new String(panelLoginAdmin.getjPasswordFieldAdmin().getPassword());
+        if (ADMIN_PASSWORD.equals(password)) {
+            esAdminLogueado = true; // Marca la sesión como Admin
+            profesorLogueado = null; // Un admin no es un profesor
+            System.out.println("Login de Administrador exitoso.");
+            ventanaInicioSesion.dispose();
+            if (accionPostLogin != null) {
+                accionPostLogin.run(); // Ejecuta la acción guardada
+            }
+        } else {
+            panelLoginAdmin.mostrarLabelError();
+        }
+        return;
+    }
+    
+        if (panelLoginProfesor != null && ae.getSource() == panelLoginProfesor.getjButtonIngresarProfesor()) {
+        String rut = panelLoginProfesor.getjTextFieldRutProfesor().getText();
+        Profesor profesor = buscarProfesorPorRut(rut);
+        if (profesor != null) {
+            profesorLogueado = profesor; // Guarda el profesor en la sesión
+            esAdminLogueado = false;
+            System.out.println("Login de Profesor exitoso: " + profesor.getNombre());
+            ventanaInicioSesion.dispose();
+            if (accionPostLogin != null) {
+                accionPostLogin.run(); // Ejecuta la acción guardada
+            }
+        } else {
+            panelLoginProfesor.mostrarLabelError();
+        }
+        return;
+    }
+
+    if (ventanaInicioSesion != null && ae.getSource() == ventanaInicioSesion.getjButtonCancelar()) {
+        ventanaInicioSesion.dispose();
+        logout(); // Limpia la sesión si cancela
         return;
     }
 
@@ -568,6 +647,7 @@ public void actionPerformed(ActionEvent ae) {
     // ---- Menú de Asistencia ----
     if (ventanaAsistenciaMenu != null && ae.getSource() == ventanaAsistenciaMenu.getjButtonMenuAsistenciaVCancelar()) {
         ventanaAsistenciaMenu.dispose();
+        logout();
         return;
     }
 
@@ -603,14 +683,22 @@ public void actionPerformed(ActionEvent ae) {
     }
 
     if (ventanaTablaAsistencia != null && ae.getSource() == ventanaTablaAsistencia.getjButtonGestionTotalAsistenciaVBuscar()) {
-        String fechaTexto = ventanaTablaAsistencia.getjTextFieldGestionTotalAsistenciaVFecha().getText();
         String cursoSeleccionado = (String) ventanaTablaAsistencia.getjComboBoxGestionTotalAsistenciaVCurso().getSelectedItem();
-
+        
+        // Si es un profesor (no un admin) y esta intentando ver un curso que no es el suyo
+        if (!esAdminLogueado && profesorLogueado != null && !profesorLogueado.getCursoJefatura().equalsIgnoreCase(cursoSeleccionado)) {
+            JOptionPane.showMessageDialog(ventanaTablaAsistencia,
+                "Acceso denegado. Solo puede gestionar la asistencia de su curso: " + profesorLogueado.getCursoJefatura(),
+                "Permiso Denegado", JOptionPane.WARNING_MESSAGE);
+            return; // Detiene la acción
+        }
+        
         if (cursoSeleccionado == null || cursoSeleccionado.trim().isEmpty()) {
             JOptionPane.showMessageDialog(ventanaTablaAsistencia, "Por favor, seleccione un curso.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        
+        String fechaTexto = ventanaTablaAsistencia.getjTextFieldGestionTotalAsistenciaVFecha().getText();
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate fecha = LocalDate.parse(fechaTexto, formatter);
@@ -848,6 +936,7 @@ public void actionPerformed(ActionEvent ae) {
     // ---- Menú de Profesores ----
     if (ventanaMenuProfesor != null && ae.getSource() == ventanaMenuProfesor.getjButtonMenuProfesorVCancelar()) {
         ventanaMenuProfesor.dispose();
+        logout();
         return;
     }
 
@@ -1300,6 +1389,85 @@ public void actionPerformed(ActionEvent ae) {
         return false;
     }
 
+    private void cerrarAplicacion() {
+        int confirm = JOptionPane.showConfirmDialog(ventanaPrincipal,
+                "¿Estás seguro de que quieres salir? Se guardarán los cambios.",
+                "Confirmar Salida",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                guardarDatosEnTxt();
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(ventanaPrincipal,
+                        "Error al guardar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                ventanaPrincipal.dispose();
+                System.exit(0);
+            }
+        }
+    }
+    
+    
+    private void mostrarLoginAdmin(Runnable accionAlExito) {
+        this.accionPostLogin = accionAlExito; // Guarda la acción a realizar
+
+        ventanaInicioSesion = new InicioSesionV();
+        panelLoginAdmin = new InicioSesionAdministradorP();
+
+        // Sensibilizar botones
+        panelLoginAdmin.getjButtonIngresarAdmin().addActionListener(this);
+        ventanaInicioSesion.getjButtonCancelar().addActionListener(this);
+
+        // Cargar el panel en la ventana principal
+        JPanel panelPrincipal = ventanaInicioSesion.getjPanelPrincipalLogin();
+        panelPrincipal.removeAll();
+        panelPrincipal.add(panelLoginAdmin, BorderLayout.CENTER);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+
+        ventanaInicioSesion.setVisible(true);
+    }
+    
+    private void mostrarLoginProfesor(Runnable accionAlExito) {
+    this.accionPostLogin = accionAlExito; // Guarda la acción a realizar
+
+    ventanaInicioSesion = new InicioSesionV();
+    panelLoginProfesor = new InicioSesionProfesorP();
+
+    // Sensibilizar botones
+    panelLoginProfesor.getjButtonIngresarProfesor().addActionListener(this);
+    ventanaInicioSesion.getjButtonCancelar().addActionListener(this);
+
+    // Cargar el panel en la ventana principal
+    JPanel panelPrincipal = ventanaInicioSesion.getjPanelPrincipalLogin();
+    panelPrincipal.removeAll();
+    panelPrincipal.add(panelLoginProfesor, BorderLayout.CENTER);
+    panelPrincipal.revalidate();
+    panelPrincipal.repaint();
+
+    ventanaInicioSesion.setVisible(true);
+    }
+    
+    private void logout() {
+    this.profesorLogueado = null;
+    this.esAdminLogueado = false;
+    System.out.println("Sesión cerrada.");
+    }
+
+
+    private Profesor buscarProfesorPorRut(String rut) {
+        if (rut == null || rut.trim().isEmpty()) {
+            return null;
+        }
+        for (Profesor p : this.listaProfesores) {
+            if (p.getRut().equalsIgnoreCase(rut.trim())) {
+                return p;
+            }
+        }
+        return null;
+    }
+    
     // Utilidades
     
     private LocalDate leerYConvertirFecha()throws IOException{
