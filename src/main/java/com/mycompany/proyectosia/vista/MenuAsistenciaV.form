@@ -32,8 +32,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonMenuAsistenciaVAlumnos" min="-2" pref="195" max="-2" attributes="0"/>
+                          <Component id="jButtonGenerarReportesV" min="-2" pref="195" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jButtonMenuAsistenciaVAlumnos" pref="195" max="32767" attributes="0"/>
                               <Component id="jLabel2" pref="195" max="32767" attributes="0"/>
                               <Component id="jButtonMenuAsistenciaVAsistencia" max="32767" attributes="0"/>
                           </Group>
@@ -60,7 +61,9 @@
               <Component id="jButtonMenuAsistenciaVAsistencia" min="-2" pref="31" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="jButtonMenuAsistenciaVAlumnos" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace pref="145" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonGenerarReportesV" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace pref="96" max="32767" attributes="0"/>
               <Component id="jButtonMenuAsistenciaVCancelar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
@@ -145,6 +148,11 @@
     <Component class="javax.swing.JButton" name="jButtonMenuAsistenciaVCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonGenerarReportesV">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Generar Reportes"/>
       </Properties>
     </Component>
   </SubComponents>

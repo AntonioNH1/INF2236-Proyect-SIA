@@ -5,6 +5,7 @@
 package com.mycompany.proyectosia.vista.GestionAsistencia;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -39,12 +40,12 @@ public class GestionTotalAsistenciaV extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableGestionTotalAsistenciaVTabla = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldGestionTotalAsistenciaVCurso = new javax.swing.JTextField();
         jButtonGestionTotalAsistenciaVBuscar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButtonGestionTotalAsistenciaVSalir = new javax.swing.JButton();
         jButtonGestionTotalAsistenciaVBorrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jComboBoxGestionTotalAsistenciaVCurso = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,8 +89,6 @@ public class GestionTotalAsistenciaV extends javax.swing.JFrame {
 
         jLabel1.setText("Fecha:");
 
-        jTextFieldGestionTotalAsistenciaVCurso.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
         jButtonGestionTotalAsistenciaVBuscar.setText("Buscar");
 
         jLabel2.setText("Curso:");
@@ -100,6 +99,8 @@ public class GestionTotalAsistenciaV extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 2, 12)); // NOI18N
         jLabel3.setText("* rellene los campos de Fecha y Curso, luego presione \"Buscar\"");
+
+        jComboBoxGestionTotalAsistenciaVCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuarto medio", "Tercero medio", "Segundo medio", "Primero medio", "Octavo basico", "Septimo basico", "Sexto basico", "Quinto basico", "Cuarto basico", "Tercero basico", "Segundo basico", "Primero basico" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,9 +119,9 @@ public class GestionTotalAsistenciaV extends javax.swing.JFrame {
                 .addComponent(jButtonGestionTotalAsistenciaVBuscar)
                 .addGap(173, 173, 173)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldGestionTotalAsistenciaVCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBoxGestionTotalAsistenciaVCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(jButtonGestionTotalAsistenciaVBorrar)
@@ -137,9 +138,9 @@ public class GestionTotalAsistenciaV extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldGestionTotalAsistenciaVFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextFieldGestionTotalAsistenciaVCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonGestionTotalAsistenciaVBuscar)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBoxGestionTotalAsistenciaVCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -179,8 +180,8 @@ public class GestionTotalAsistenciaV extends javax.swing.JFrame {
     }
 
     // Getter para el campo de texto del curso
-    public JTextField getjTextFieldGestionTotalAsistenciaVCurso() {
-        return jTextFieldGestionTotalAsistenciaVCurso;
+    public JComboBox<String> getjComboBoxGestionTotalAsistenciaVCurso() {
+        return jComboBoxGestionTotalAsistenciaVCurso;
     }
 
 
@@ -188,12 +189,12 @@ public class GestionTotalAsistenciaV extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGestionTotalAsistenciaVBorrar;
     private javax.swing.JButton jButtonGestionTotalAsistenciaVBuscar;
     private javax.swing.JButton jButtonGestionTotalAsistenciaVSalir;
+    private javax.swing.JComboBox<String> jComboBoxGestionTotalAsistenciaVCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableGestionTotalAsistenciaVTabla;
-    private javax.swing.JTextField jTextFieldGestionTotalAsistenciaVCurso;
     private javax.swing.JTextField jTextFieldGestionTotalAsistenciaVFecha;
     // End of variables declaration//GEN-END:variables
 }

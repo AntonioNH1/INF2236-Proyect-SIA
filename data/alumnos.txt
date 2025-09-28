@@ -1,0 +1,4 @@
+19.888.777-6;Pedro Soto;Segundo medio
+20.222.333-4;Ana Lopez;Cuarto basico
+20.111.222-3;Juan Perez;Cuarto basico
+19.777.666-5;Sofía Castro;Segundo medio

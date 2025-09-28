@@ -57,8 +57,8 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextFieldAgregarProfesorVCurso" pref="121" max="32767" attributes="0"/>
-                          <Component id="jTextFieldAgregarProfesorVRut" max="32767" attributes="0"/>
+                          <Component id="jTextFieldAgregarProfesorVRut" pref="121" max="32767" attributes="0"/>
+                          <Component id="jComboBoxAgregarProfesorVCurso" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -107,8 +107,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextFieldAgregarProfesorVCurso" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxAgregarProfesorVCurso" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -152,8 +152,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldAgregarProfesorVNombreActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldAgregarProfesorVCurso">
-    </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldAgregarProfesorVRut">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldAgregarProfesorVRutActionPerformed"/>
@@ -192,6 +190,29 @@
         <Property name="doubleBuffered" type="boolean" value="true"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxAgregarProfesorVCurso">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="12">
+            <StringItem index="0" value="Cuarto medio"/>
+            <StringItem index="1" value="Tercero medio"/>
+            <StringItem index="2" value="Segundo medio"/>
+            <StringItem index="3" value="Primero medio"/>
+            <StringItem index="4" value="Octavo basico"/>
+            <StringItem index="5" value="Septimo basico"/>
+            <StringItem index="6" value="Sexto basico"/>
+            <StringItem index="7" value="Quinto basico"/>
+            <StringItem index="8" value="Cuarto basico"/>
+            <StringItem index="9" value="Tercero basico"/>
+            <StringItem index="10" value="Segundo basico"/>
+            <StringItem index="11" value="Primero basico"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

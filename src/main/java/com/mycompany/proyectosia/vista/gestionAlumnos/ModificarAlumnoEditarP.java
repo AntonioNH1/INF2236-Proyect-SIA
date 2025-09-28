@@ -5,6 +5,7 @@
 package com.mycompany.proyectosia.vista.gestionAlumnos;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -30,13 +31,13 @@ public class ModificarAlumnoEditarP extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jTextFieldModificarAlumnoEditarPNombre = new javax.swing.JTextField();
-        jTextFieldModificarAlumnoEditarPCurso = new javax.swing.JTextField();
         jTextFieldModificarAlumnoEditarPRut = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButtonModificarAlumnoEditarPActualizar = new javax.swing.JButton();
         jLabelModificarAlumnoEditarPExito = new javax.swing.JLabel();
+        jComboBoxModificarAlumnoEditarPCurso = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Alumno encontrado, a continuación modifique los datos:");
 
@@ -49,6 +50,8 @@ public class ModificarAlumnoEditarP extends javax.swing.JPanel {
         jButtonModificarAlumnoEditarPActualizar.setText("Actualizar");
 
         jLabelModificarAlumnoEditarPExito.setText("Alumno modificado con éxito !!");
+
+        jComboBoxModificarAlumnoEditarPCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuarto medio", "Tercero medio", "Segundo medio", "Primero medio", "Octavo basico", "Septimo basico", "Sexto basico", "Quinto basico", "Cuarto basico", "Tercero basico", "Segundo basico", "Primero basico" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -71,8 +74,8 @@ public class ModificarAlumnoEditarP extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldModificarAlumnoEditarPNombre)
-                            .addComponent(jTextFieldModificarAlumnoEditarPCurso)
-                            .addComponent(jTextFieldModificarAlumnoEditarPRut, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextFieldModificarAlumnoEditarPRut, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxModificarAlumnoEditarPCurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(71, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -92,8 +95,8 @@ public class ModificarAlumnoEditarP extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldModificarAlumnoEditarPCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBoxModificarAlumnoEditarPCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldModificarAlumnoEditarPRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,8 +118,8 @@ public class ModificarAlumnoEditarP extends javax.swing.JPanel {
         return jTextFieldModificarAlumnoEditarPNombre.getText();
     }
     
-    public String getjTextFieldModificarAlumnoEditarPCurso(){
-        return jTextFieldModificarAlumnoEditarPCurso.getText();
+    public JComboBox<String> getjComboBoxModificarAlumnoEditarPCurso(){
+        return jComboBoxModificarAlumnoEditarPCurso;
     }
     
     public String getjTextFieldModificarAlumnoEditarPRut(){
@@ -127,9 +130,6 @@ public class ModificarAlumnoEditarP extends javax.swing.JPanel {
         jTextFieldModificarAlumnoEditarPNombre.setText(nombre);
     }
     
-    public void setjTextFieldModificarAlumnoEditarPCurso(String curso){
-        jTextFieldModificarAlumnoEditarPCurso.setText(curso);
-    }
     
     public void setjTextFieldModificarAlumnoEditarPRut(String rut){
         jTextFieldModificarAlumnoEditarPRut.setText(rut);
@@ -141,12 +141,12 @@ public class ModificarAlumnoEditarP extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonModificarAlumnoEditarPActualizar;
+    private javax.swing.JComboBox<String> jComboBoxModificarAlumnoEditarPCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelModificarAlumnoEditarPExito;
-    private javax.swing.JTextField jTextFieldModificarAlumnoEditarPCurso;
     private javax.swing.JTextField jTextFieldModificarAlumnoEditarPNombre;
     private javax.swing.JTextField jTextFieldModificarAlumnoEditarPRut;
     // End of variables declaration//GEN-END:variables

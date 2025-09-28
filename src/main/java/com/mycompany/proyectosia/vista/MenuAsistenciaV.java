@@ -33,6 +33,7 @@ public class MenuAsistenciaV extends javax.swing.JFrame {
         jButtonMenuAsistenciaVAlumnos = new javax.swing.JButton();
         jButtonMenuAsistenciaVAsistencia = new javax.swing.JButton();
         jButtonMenuAsistenciaVCancelar = new javax.swing.JButton();
+        jButtonGenerarReportesV = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +73,8 @@ public class MenuAsistenciaV extends javax.swing.JFrame {
 
         jButtonMenuAsistenciaVCancelar.setText("Cancelar");
 
+        jButtonGenerarReportesV.setText("Generar Reportes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,8 +87,9 @@ public class MenuAsistenciaV extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(220, 220, 220)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonMenuAsistenciaVAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonGenerarReportesV, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButtonMenuAsistenciaVAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                 .addComponent(jButtonMenuAsistenciaVAsistencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(134, Short.MAX_VALUE))
@@ -105,7 +109,9 @@ public class MenuAsistenciaV extends javax.swing.JFrame {
                 .addComponent(jButtonMenuAsistenciaVAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonMenuAsistenciaVAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonGenerarReportesV, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(jButtonMenuAsistenciaVCancelar)
                 .addGap(44, 44, 44))
         );
@@ -130,9 +136,14 @@ public class MenuAsistenciaV extends javax.swing.JFrame {
         return jButtonMenuAsistenciaVCancelar;
     }
     
+    public JButton getjButtonGenerarReportesVir(){
+        return jButtonGenerarReportesV;
+    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonGenerarReportesV;
     private javax.swing.JButton jButtonMenuAsistenciaVAlumnos;
     private javax.swing.JButton jButtonMenuAsistenciaVAsistencia;
     private javax.swing.JButton jButtonMenuAsistenciaVCancelar;

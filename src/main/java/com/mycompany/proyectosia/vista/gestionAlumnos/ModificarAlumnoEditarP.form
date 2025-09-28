@@ -36,8 +36,8 @@
                       <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jTextFieldModificarAlumnoEditarPNombre" max="32767" attributes="0"/>
-                          <Component id="jTextFieldModificarAlumnoEditarPCurso" alignment="0" max="32767" attributes="0"/>
                           <Component id="jTextFieldModificarAlumnoEditarPRut" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                          <Component id="jComboBoxModificarAlumnoEditarPCurso" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -64,8 +64,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextFieldModificarAlumnoEditarPCurso" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxModificarAlumnoEditarPCurso" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -86,8 +86,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldModificarAlumnoEditarPNombre">
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldModificarAlumnoEditarPCurso">
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldModificarAlumnoEditarPRut">
     </Component>
@@ -115,6 +113,29 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Alumno modificado con &#xe9;xito !!"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxModificarAlumnoEditarPCurso">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="12">
+            <StringItem index="0" value="Cuarto medio"/>
+            <StringItem index="1" value="Tercero medio"/>
+            <StringItem index="2" value="Segundo medio"/>
+            <StringItem index="3" value="Primero medio"/>
+            <StringItem index="4" value="Octavo basico"/>
+            <StringItem index="5" value="Septimo basico"/>
+            <StringItem index="6" value="Sexto basico"/>
+            <StringItem index="7" value="Quinto basico"/>
+            <StringItem index="8" value="Cuarto basico"/>
+            <StringItem index="9" value="Tercero basico"/>
+            <StringItem index="10" value="Segundo basico"/>
+            <StringItem index="11" value="Primero basico"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

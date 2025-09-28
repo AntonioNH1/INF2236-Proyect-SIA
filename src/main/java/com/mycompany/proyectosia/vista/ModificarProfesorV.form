@@ -53,11 +53,11 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jTextFieldRutProfesorModificar" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCursoProfesorModificar" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jComboBoxModificarProfesorVCurso" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -81,8 +81,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextFieldCursoProfesorModificar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jComboBoxModificarProfesorVCurso" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jButtonMenuModificarProfesorVModificar" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="12" max="32767" attributes="0"/>
               <Component id="jButtonMenuModificarProfesorVCancelar" min="-2" max="-2" attributes="0"/>
@@ -121,11 +121,6 @@
         <Property name="text" type="java.lang.String" value="Ingrese el RUT del profesor:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldCursoProfesorModificar">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCursoProfesorModificarActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ingrese el curso a cambiar:"/>
@@ -143,6 +138,29 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMenuModificarProfesorVModificarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxModificarProfesorVCurso">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="12">
+            <StringItem index="0" value="Cuarto medio"/>
+            <StringItem index="1" value="Tercero medio"/>
+            <StringItem index="2" value="Segundo medio"/>
+            <StringItem index="3" value="Primero medio"/>
+            <StringItem index="4" value="Octavo basico"/>
+            <StringItem index="5" value="Septimo basico"/>
+            <StringItem index="6" value="Sexto basico"/>
+            <StringItem index="7" value="Quinto basico"/>
+            <StringItem index="8" value="Cuarto basico"/>
+            <StringItem index="9" value="Tercero basico"/>
+            <StringItem index="10" value="Segundo basico"/>
+            <StringItem index="11" value="Primero basico"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

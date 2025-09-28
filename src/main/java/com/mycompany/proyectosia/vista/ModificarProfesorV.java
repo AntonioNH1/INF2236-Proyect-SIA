@@ -5,6 +5,7 @@
 package com.mycompany.proyectosia.vista;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
@@ -35,10 +36,10 @@ public class ModificarProfesorV extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextFieldRutProfesorModificar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldCursoProfesorModificar = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButtonMenuModificarProfesorVCancelar = new javax.swing.JButton();
         jButtonMenuModificarProfesorVModificar = new javax.swing.JButton();
+        jComboBoxModificarProfesorVCurso = new javax.swing.JComboBox<>();
 
         jTextFieldRutProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,12 +69,6 @@ public class ModificarProfesorV extends javax.swing.JFrame {
 
         jLabel2.setText("Ingrese el RUT del profesor:");
 
-        jTextFieldCursoProfesorModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCursoProfesorModificarActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Ingrese el curso a cambiar:");
 
         jButtonMenuModificarProfesorVCancelar.setText("Cancelar");
@@ -84,6 +79,8 @@ public class ModificarProfesorV extends javax.swing.JFrame {
                 jButtonMenuModificarProfesorVModificarActionPerformed(evt);
             }
         });
+
+        jComboBoxModificarProfesorVCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuarto medio", "Tercero medio", "Segundo medio", "Primero medio", "Octavo basico", "Septimo basico", "Sexto basico", "Quinto basico", "Cuarto basico", "Tercero basico", "Segundo basico", "Primero basico" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,11 +97,11 @@ public class ModificarProfesorV extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(123, 123, 123)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldRutProfesorModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextFieldCursoProfesorModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxModificarProfesorVCurso, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(155, 155, 155)
                         .addComponent(jButtonMenuModificarProfesorVModificar)))
@@ -122,8 +119,8 @@ public class ModificarProfesorV extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCursoProfesorModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBoxModificarProfesorVCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jButtonMenuModificarProfesorVModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jButtonMenuModificarProfesorVCancelar)
@@ -141,10 +138,6 @@ public class ModificarProfesorV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldRutProfesorModificarActionPerformed
 
-    private void jTextFieldCursoProfesorModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCursoProfesorModificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCursoProfesorModificarActionPerformed
-
     private void jButtonMenuModificarProfesorVModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuModificarProfesorVModificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonMenuModificarProfesorVModificarActionPerformed
@@ -154,8 +147,8 @@ public class ModificarProfesorV extends javax.swing.JFrame {
         return jButtonMenuModificarProfesorVCancelar;
     }
     
-    public JTextField getjTextFieldCursoProfesorModificar(){
-        return jTextFieldCursoProfesorModificar;
+    public JComboBox<String> getjComboBoxModificarProfesorVCurso(){
+        return jComboBoxModificarProfesorVCurso;
     }
     
     public JTextField getjTextFieldRutProfesorModificar(){
@@ -171,11 +164,11 @@ public class ModificarProfesorV extends javax.swing.JFrame {
     private javax.swing.JButton jButtonMenuModificarProfesorVCancelar;
     private javax.swing.JButton jButtonMenuModificarProfesorVCancelar1;
     private javax.swing.JButton jButtonMenuModificarProfesorVModificar;
+    private javax.swing.JComboBox<String> jComboBoxModificarProfesorVCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextFieldCursoProfesorModificar;
     private javax.swing.JTextField jTextFieldRutProfesor;
     private javax.swing.JTextField jTextFieldRutProfesorModificar;
     // End of variables declaration//GEN-END:variables

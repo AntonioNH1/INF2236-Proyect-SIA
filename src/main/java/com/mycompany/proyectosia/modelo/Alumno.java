@@ -103,4 +103,32 @@ public class Alumno {
         return null;
     }
     
+    
+    public boolean borrarAsistencia(LocalDate fecha) {
+        boolean borrado = false;
+        // recorremos hacia atras para no provocar una excepcion al borrar
+        for (int i = this.listaAsistencia.size() - 1; i >= 0; i--) {
+            Asistencia asistencia = this.listaAsistencia.get(i);
+
+            if (asistencia.getFecha().equals(fecha)) {
+                this.listaAsistencia.remove(i);
+                borrado = true;
+            }
+        }
+        return borrado;
+    }
+    
+    
+    public boolean modificarAsistencia(LocalDate fechaOriginal, LocalDate nuevaFecha, Asistencia.EstadoAsistencia nuevoEstado) {
+        Asistencia asistenciaAModificar = getAsistencia(fechaOriginal);
+
+        if (asistenciaAModificar != null) {
+            asistenciaAModificar.setFecha(nuevaFecha);
+            asistenciaAModificar.setEstado(nuevoEstado);
+            return true; 
+        }
+
+        return false;
+    }
+    
 }

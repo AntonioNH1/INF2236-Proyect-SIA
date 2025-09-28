@@ -5,6 +5,7 @@
 package com.mycompany.proyectosia.vista.gestionAlumnos;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -31,13 +32,13 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonAgregarAlumnoVCancelar = new javax.swing.JButton();
         jTextFieldAgregarAlumnoVNombre = new javax.swing.JTextField();
-        jTextFieldAgregarAlumnoVCurso = new javax.swing.JTextField();
         jTextFieldAgregarAlumnoVRut = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButtonAgregarAlumnoVCrear = new javax.swing.JButton();
         jLabelAgregarAlumnoVExito = new javax.swing.JLabel();
+        jComboBoxAgregarAlumnoVCurso = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +75,8 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
 
         jLabelAgregarAlumnoVExito.setText("Alumno agregado con éxito !!");
 
+        jComboBoxAgregarAlumnoVCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuarto medio", "Tercero medio", "Segundo medio", "Primero medio", "Octavo basico", "Septimo basico", "Sexto basico", "Quinto basico", "Cuarto basico", "Tercero basico", "Segundo basico", "Primero basico" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,8 +99,8 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jTextFieldAgregarAlumnoVRut, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                .addComponent(jTextFieldAgregarAlumnoVCurso)
-                                .addComponent(jTextFieldAgregarAlumnoVNombre)))
+                                .addComponent(jTextFieldAgregarAlumnoVNombre)
+                                .addComponent(jComboBoxAgregarAlumnoVCurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jLabelAgregarAlumnoVExito, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(171, Short.MAX_VALUE))
         );
@@ -112,8 +115,8 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldAgregarAlumnoVCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBoxAgregarAlumnoVCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldAgregarAlumnoVRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,8 +158,8 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
         return jTextFieldAgregarAlumnoVNombre.getText();
     }
     
-    public String getjTextFieldAgregarAlumnoVCurso(){
-        return jTextFieldAgregarAlumnoVCurso.getText();
+    public JComboBox<String> getjComboBoxAgregarAlumnoVCurso(){
+        return jComboBoxAgregarAlumnoVCurso;
     }
         
     public String getjTextFieldAgregarAlumnoVRut(){
@@ -174,12 +177,12 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregarAlumnoVCancelar;
     private javax.swing.JButton jButtonAgregarAlumnoVCrear;
+    private javax.swing.JComboBox<String> jComboBoxAgregarAlumnoVCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelAgregarAlumnoVExito;
-    private javax.swing.JTextField jTextFieldAgregarAlumnoVCurso;
     private javax.swing.JTextField jTextFieldAgregarAlumnoVNombre;
     private javax.swing.JTextField jTextFieldAgregarAlumnoVRut;
     // End of variables declaration//GEN-END:variables

@@ -87,6 +87,25 @@ public class AsistenciaTableModel extends AbstractTableModel{
             fireTableCellUpdated(rowIndex, columnIndex);
         }
     }
+    
+    public void borrarAsistenciaDeFila(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < this.listaAlumnos.size()) {
+            Alumno alumno = this.listaAlumnos.get(rowIndex);
+
+            boolean borrado = alumno.borrarAsistencia(this.fecha);
+
+            if (borrado) {
+                fireTableCellUpdated(rowIndex, 2); 
+            }
+        }
+    }
+    public void eliminarFila(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < this.listaAlumnos.size()) {
+            this.listaAlumnos.remove(rowIndex);
+            
+            fireTableRowsDeleted(rowIndex, rowIndex);
+        }
+    }
 }
     
 
