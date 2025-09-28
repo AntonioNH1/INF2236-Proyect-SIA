@@ -38,6 +38,7 @@ public class ModificarFechaAsistenciaRellenadoP extends javax.swing.JPanel {
 
         jLabel1.setText("Ingrese fecha de la asistencia a modificar:");
 
+        jButtonModificarFechaAsistenciaPBuscar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonModificarFechaAsistenciaPBuscar.setText("Buscar");
 
         jLabelModificarFechaAsistenciaRellenadoPError.setText("Los datos ingresados no existen, intente con otros.");

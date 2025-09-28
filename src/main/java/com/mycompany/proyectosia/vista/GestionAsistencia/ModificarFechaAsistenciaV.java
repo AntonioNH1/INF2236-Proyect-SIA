@@ -44,6 +44,7 @@ public class ModificarFechaAsistenciaV extends javax.swing.JFrame {
         jLabel3.setText("Modificar fecha asistencia");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButtonModificarFechaAsistenciaVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonModificarFechaAsistenciaVCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout jPanelModificarFechaAsistenciaVPrincipalLayout = new javax.swing.GroupLayout(jPanelModificarFechaAsistenciaVPrincipal);

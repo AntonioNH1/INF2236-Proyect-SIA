@@ -43,6 +43,7 @@ public class BuscarAlumnoV extends javax.swing.JFrame {
         jLabel3.setText("Buscar Alumno");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButtonBuscarAlumnoVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonBuscarAlumnoVCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout jPanelBuscarAlumnoVPrincipalLayout = new javax.swing.GroupLayout(jPanelBuscarAlumnoVPrincipal);

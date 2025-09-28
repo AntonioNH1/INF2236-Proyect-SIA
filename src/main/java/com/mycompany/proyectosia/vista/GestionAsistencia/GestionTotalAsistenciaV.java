@@ -89,12 +89,15 @@ public class GestionTotalAsistenciaV extends javax.swing.JFrame {
 
         jLabel1.setText("Fecha:");
 
+        jButtonGestionTotalAsistenciaVBuscar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonGestionTotalAsistenciaVBuscar.setText("Buscar");
 
         jLabel2.setText("Curso:");
 
+        jButtonGestionTotalAsistenciaVSalir.setBackground(new java.awt.Color(231, 231, 231));
         jButtonGestionTotalAsistenciaVSalir.setText("Guardar y salir");
 
+        jButtonGestionTotalAsistenciaVBorrar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonGestionTotalAsistenciaVBorrar.setText("Borrar");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 2, 12)); // NOI18N

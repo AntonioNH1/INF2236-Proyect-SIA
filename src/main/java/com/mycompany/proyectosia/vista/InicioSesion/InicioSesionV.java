@@ -46,6 +46,7 @@ public class InicioSesionV extends javax.swing.JFrame {
         jLabel3.setText("Inicio de Sesión");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButtonCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout jPanelPrincipalLoginLayout = new javax.swing.GroupLayout(jPanelPrincipalLogin);

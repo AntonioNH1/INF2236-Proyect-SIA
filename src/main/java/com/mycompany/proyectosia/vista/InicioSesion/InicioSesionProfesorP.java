@@ -35,6 +35,7 @@ public class InicioSesionProfesorP extends javax.swing.JPanel {
         jLabelErrorProfesor = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
+        jButtonIngresarProfesor.setBackground(new java.awt.Color(204, 204, 204));
         jButtonIngresarProfesor.setText("Buscar");
 
         jLabelErrorProfesor.setText("El RUT ingresado no existe, intente con otro.");

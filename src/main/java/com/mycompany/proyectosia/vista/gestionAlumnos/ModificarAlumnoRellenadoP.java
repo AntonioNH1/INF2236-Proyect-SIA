@@ -35,6 +35,7 @@ public class ModificarAlumnoRellenadoP extends javax.swing.JPanel {
 
         jLabel1.setText("Ingrese RUT del alumno a modificar:");
 
+        jButtonModificarAlumnoRellenadoPBuscar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonModificarAlumnoRellenadoPBuscar.setText("Buscar");
 
         jLabelModificarAlumnoRellenadoPError.setText("El RUT ingresado no existe, intente con otro.");

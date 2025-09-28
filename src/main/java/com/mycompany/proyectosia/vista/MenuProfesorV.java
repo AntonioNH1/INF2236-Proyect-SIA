@@ -81,7 +81,9 @@ public class MenuProfesorV extends javax.swing.JFrame {
             }
         });
 
+        jButtonMenuProfesorVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonMenuProfesorVCancelar.setText("Cancelar");
+        jButtonMenuProfesorVCancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

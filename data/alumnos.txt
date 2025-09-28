@@ -5,3 +5,6 @@
 20.222.333-4;Anamalia Lupin;Sexto basico
 20.111.222-3;Juan Perez;Cuarto basico
 19.777.666-5;Sofía Castro;Segundo medio
+21.457.892-K;Maria Torres;Quinto basico
+22.014.398-8;Valentina Vargas;Quinto basico
+17.283.940-3;Felipe Ramirez;Quinto basico

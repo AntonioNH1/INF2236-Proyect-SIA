@@ -73,8 +73,10 @@ public class AgregarProfesorV extends javax.swing.JFrame {
             }
         });
 
+        jButtonAgregarProfesorVCrear.setBackground(new java.awt.Color(204, 204, 204));
         jButtonAgregarProfesorVCrear.setText("Crear Profesor");
 
+        jButtonAgregarProfesorVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonAgregarProfesorVCancelar.setText("Cancelar");
 
         ocultarjLabelAgregarProfesorVExito.setText("Profesor añadido con exito!!");
@@ -87,6 +89,7 @@ public class AgregarProfesorV extends javax.swing.JFrame {
         jLabel6.setDoubleBuffered(true);
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jComboBoxAgregarProfesorVCurso.setBackground(new java.awt.Color(204, 204, 204));
         jComboBoxAgregarProfesorVCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuarto medio", "Tercero medio", "Segundo medio", "Primero medio", "Octavo basico", "Septimo basico", "Sexto basico", "Quinto basico", "Cuarto basico", "Tercero basico", "Segundo basico", "Primero basico" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

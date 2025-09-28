@@ -42,6 +42,7 @@ public class ModificarFechaAsistenciaEditarP extends javax.swing.JPanel {
 
         jLabel2.setText("Estado asistencia:");
 
+        jButtonModificarFechaAsistenciaEditarPActualizar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonModificarFechaAsistenciaEditarPActualizar.setText("Actualizar");
 
         jLabelModificarFechaAsistenciaEditarPExito.setText("Fecha modificada con éxito !!");

@@ -43,6 +43,7 @@ public class ModificarAlumnoV extends javax.swing.JFrame {
         jLabel3.setText("Modificar Alumno");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButtonModificarAlumnoVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonModificarAlumnoVCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout jPanelModificarAlumnoVPrincipalLayout = new javax.swing.GroupLayout(jPanelModificarAlumnoVPrincipal);

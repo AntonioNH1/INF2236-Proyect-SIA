@@ -72,7 +72,9 @@ public class MenuV extends javax.swing.JFrame {
             }
         });
 
+        jButtonMenuVSalir.setBackground(new java.awt.Color(231, 231, 231));
         jButtonMenuVSalir.setText("Salir");
+        jButtonMenuVSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonMenuVGestionarAlumnos.setBackground(new java.awt.Color(204, 204, 204));
         jButtonMenuVGestionarAlumnos.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N

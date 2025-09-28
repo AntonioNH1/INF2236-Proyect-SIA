@@ -51,6 +51,7 @@ public class ModificarAlumnoEditarP extends javax.swing.JPanel {
 
         jLabelModificarAlumnoEditarPExito.setText("Alumno modificado con éxito !!");
 
+        jComboBoxModificarAlumnoEditarPCurso.setBackground(new java.awt.Color(204, 204, 204));
         jComboBoxModificarAlumnoEditarPCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuarto medio", "Tercero medio", "Segundo medio", "Primero medio", "Octavo basico", "Septimo basico", "Sexto basico", "Quinto basico", "Cuarto basico", "Tercero basico", "Segundo basico", "Primero basico" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

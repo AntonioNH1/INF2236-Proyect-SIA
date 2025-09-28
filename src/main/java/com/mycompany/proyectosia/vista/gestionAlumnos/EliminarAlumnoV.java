@@ -42,10 +42,12 @@ public class EliminarAlumnoV extends javax.swing.JFrame {
 
         jLabel2.setText("Ingrese el Rut del Alumno a Eliminar");
 
+        jButtonEliminarAlumnoVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonEliminarAlumnoVCancelar.setText("Cancelar");
 
         ocultarjLabelEliminarAlumnoVExito.setText("Se ha Eliminado Correctamente");
 
+        jButtonEliminarAlumnoVEliminar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonEliminarAlumnoVEliminar.setText("Eliminar Alumno");
 
         ocultarjLabelEliminarAlumnoVNoExiste.setText("No existe Alumno con ese RUT.");

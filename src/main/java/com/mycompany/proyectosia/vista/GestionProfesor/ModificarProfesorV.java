@@ -71,8 +71,10 @@ public class ModificarProfesorV extends javax.swing.JFrame {
 
         jLabel4.setText("Ingrese el curso a cambiar:");
 
+        jButtonMenuModificarProfesorVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonMenuModificarProfesorVCancelar.setText("Cancelar");
 
+        jButtonMenuModificarProfesorVModificar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonMenuModificarProfesorVModificar.setText("Modificar");
         jButtonMenuModificarProfesorVModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

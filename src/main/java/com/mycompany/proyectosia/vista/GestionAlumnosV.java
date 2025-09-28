@@ -37,7 +37,9 @@ public class GestionAlumnosV extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jButtonGestionAlumnosVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonGestionAlumnosVCancelar.setText("Cancelar");
+        jButtonGestionAlumnosVCancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonGestionAlumnosVCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGestionAlumnosVCancelarActionPerformed(evt);

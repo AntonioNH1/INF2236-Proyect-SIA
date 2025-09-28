@@ -40,6 +40,7 @@ public class InicioSesionAdministradorP extends javax.swing.JPanel {
 
         jLabel2.setText("Contraseña:");
 
+        jButtonIngresarAdmin.setBackground(new java.awt.Color(204, 204, 204));
         jButtonIngresarAdmin.setText("Actualizar");
 
         jLabelErrorAdmin.setText("Contraseña incorrecta.");

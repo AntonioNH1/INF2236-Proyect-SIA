@@ -40,9 +40,13 @@ public class GenerarCursoV extends javax.swing.JFrame {
 
         jLabel2.setText("Ingrese el Curso:");
 
+        jButtonGenerarCursoVCrear.setBackground(new java.awt.Color(204, 204, 204));
         jButtonGenerarCursoVCrear.setText("Generar Reporte");
+        jButtonGenerarCursoVCrear.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jButtonGenerarReporteVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonGenerarReporteVCancelar.setText("Cancelar");
+        jButtonGenerarReporteVCancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

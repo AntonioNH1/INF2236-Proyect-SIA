@@ -4,6 +4,8 @@
 
 package com.mycompany.proyectosia.controlador;
 
+import com.mycompany.proyectosia.excepciones.EntidadDuplicadaException;
+import com.mycompany.proyectosia.excepciones.EntidadNoEncontradaException;
 import com.mycompany.proyectosia.vista.GenerarReportes.GenerarAlumnoV;
 import com.mycompany.proyectosia.vista.GenerarReportes.GenerarCursoV;
 import com.mycompany.proyectosia.modelo.Profesor;
@@ -11,6 +13,7 @@ import com.mycompany.proyectosia.modelo.Asistencia;
 import com.mycompany.proyectosia.modelo.Alumno;
 import com.mycompany.proyectosia.modelo.ReportePorAlumno;
 import com.mycompany.proyectosia.modelo.ReportePorCurso;
+import com.mycompany.proyectosia.vista.FuncionalidadAsistenciaCronica.AlertaInasistenciaV;
 import com.mycompany.proyectosia.vista.GestionProfesor.AgregarProfesorV;
 import com.mycompany.proyectosia.vista.GestionProfesor.EliminarProfesorV;
 import com.mycompany.proyectosia.vista.GestionAlumnos.EliminarAlumnoV;
@@ -53,6 +56,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 /**
@@ -75,6 +79,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
     private MenuProfesorV ventanaMenuProfesor;
     private EliminarProfesorV ventanaEliminarProfesor;
     private ModificarProfesorV ventanaModificarProfesor;
+    private AlertaInasistenciaV ventanaAlertaInasistencia;
     
     // ventanas InicioSesionV
     private InicioSesionV ventanaInicioSesion;
@@ -134,8 +139,7 @@ public class SistemaAsistenciaEscolar implements ActionListener{
             System.out.println("Datos cargados desde TXT.");
         } catch (IOException e) {
             System.err.println("No se pudieron leer los TXT: " + e.getMessage());
-            // Fallback opcional: si no hay archivos, usa los datos “hardcodeados” de tu método actual
-            cargarDatosIniciales(); // el que ya tienes
+            cargarDatosIniciales(); 
         }
     }
     private void cargarAlumnos() throws IOException {
@@ -218,7 +222,6 @@ public class SistemaAsistenciaEscolar implements ActionListener{
                     existente.setEstado(estado);
                 }
 
-                // OPCIONAL: 4º campo = rut profesor que justificó
                 if (t.length >= 4 && !t[3].trim().isEmpty()
                         && estado == Asistencia.EstadoAsistencia.JUSTIFICADO) {
                     String rutProf = t[3].trim();
@@ -226,8 +229,6 @@ public class SistemaAsistenciaEscolar implements ActionListener{
                             .filter(p -> rutProf.equalsIgnoreCase(p.getRut()))
                             .findFirst().orElse(null);
                     if (prof != null) {
-                        // si implementas lógica extra de justificación, aplícala aquí
-                        // p.ej. prof.justificarAusencia(this, a, fecha);
                     }
                 }
             }
@@ -451,10 +452,10 @@ public void actionPerformed(ActionEvent ae) {
 
     if (ae.getSource() == ventanaPrincipal.getjButtonMenuVModuloAsistencia()) {
         mostrarLoginProfesor(() -> {
-            // Esta es la acción que se ejecutará después de un login exitoso
             ventanaAsistenciaMenu = new MenuAsistenciaV();
             ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAsistencia().addActionListener(this);
             ventanaAsistenciaMenu.getjButtonGenerarReportesVir().addActionListener(this);
+            ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAlertaAsistencia().addActionListener(this);
             ventanaAsistenciaMenu.getjButtonMenuAsistenciaVCancelar().addActionListener(this);
             ventanaAsistenciaMenu.setVisible(true);
             ventanaAsistenciaMenu.setLocationRelativeTo(null);
@@ -464,7 +465,6 @@ public void actionPerformed(ActionEvent ae) {
 
     if (ae.getSource() == ventanaPrincipal.getjButtonMenuVModuloProfesor()) {
         mostrarLoginAdmin(() -> {
-            // Esta es la acción que se ejecutará después de un login exitoso
             ventanaMenuProfesor = new MenuProfesorV();
             ventanaMenuProfesor.getjButtonMenuProfesorVAgregar().addActionListener(this);
             ventanaMenuProfesor.getjButtonMenuProfesorVEliminar().addActionListener(this);
@@ -476,16 +476,16 @@ public void actionPerformed(ActionEvent ae) {
         return;
     }
     
-        // --- NUEVO: Lógica para los botones de la ventana de login ---
+    
     if (panelLoginAdmin != null && ae.getSource() == panelLoginAdmin.getjButtonIngresarAdmin()) {
         String password = new String(panelLoginAdmin.getjPasswordFieldAdmin().getPassword());
         if (ADMIN_PASSWORD.equals(password)) {
-            esAdminLogueado = true; // Marca la sesión como Admin
-            profesorLogueado = null; // Un admin no es un profesor
+            esAdminLogueado = true; 
+            profesorLogueado = null; 
             System.out.println("Login de Administrador exitoso.");
             ventanaInicioSesion.dispose();
             if (accionPostLogin != null) {
-                accionPostLogin.run(); // Ejecuta la acción guardada
+                accionPostLogin.run(); 
             }
         } else {
             panelLoginAdmin.mostrarLabelError();
@@ -493,18 +493,19 @@ public void actionPerformed(ActionEvent ae) {
         return;
     }
     
-        if (panelLoginProfesor != null && ae.getSource() == panelLoginProfesor.getjButtonIngresarProfesor()) {
+    if (panelLoginProfesor != null && ae.getSource() == panelLoginProfesor.getjButtonIngresarProfesor()) {
         String rut = panelLoginProfesor.getjTextFieldRutProfesor().getText();
-        Profesor profesor = buscarProfesorPorRut(rut);
-        if (profesor != null) {
-            profesorLogueado = profesor; // Guarda el profesor en la sesión
+
+        try {
+            Profesor profesor = buscarProfesorPorRut(rut);
+            profesorLogueado = profesor; 
             esAdminLogueado = false;
             System.out.println("Login de Profesor exitoso: " + profesor.getNombre());
             ventanaInicioSesion.dispose();
             if (accionPostLogin != null) {
-                accionPostLogin.run(); // Ejecuta la acción guardada
+                accionPostLogin.run(); 
             }
-        } else {
+        } catch (EntidadNoEncontradaException e) {
             panelLoginProfesor.mostrarLabelError();
         }
         return;
@@ -512,7 +513,7 @@ public void actionPerformed(ActionEvent ae) {
 
     if (ventanaInicioSesion != null && ae.getSource() == ventanaInicioSesion.getjButtonCancelar()) {
         ventanaInicioSesion.dispose();
-        logout(); // Limpia la sesión si cancela
+        logout();
         return;
     }
 
@@ -571,10 +572,17 @@ public void actionPerformed(ActionEvent ae) {
     // ---- Sub-ventana: Agregar Alumno ----
     if (ventanaAlumnoAgregar != null && ae.getSource() == ventanaAlumnoAgregar.getjButtonAgregarAlumnoVCrear()) {
         String cursoSeleccionado = (String) ventanaAlumnoAgregar.getjComboBoxAgregarAlumnoVCurso().getSelectedItem();
-        if (insertarAlumno(ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVNombre(), cursoSeleccionado, ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVRut())) {
+
+        try {
+            String nombre = ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVNombre();
+            String rut = ventanaAlumnoAgregar.getjTextFieldAgregarAlumnoVRut();
+            insertarAlumno(nombre, cursoSeleccionado, rut);
             ventanaAlumnoAgregar.mostrarjLabelAgregarAlumnoVExito();
-        } else {
-            JOptionPane.showMessageDialog(ventanaAlumnoAgregar, "Error: Ya existe un alumno con el RUT ingresado.", "Error de Duplicado", JOptionPane.ERROR_MESSAGE);
+        } catch (EntidadDuplicadaException e) {
+            JOptionPane.showMessageDialog(ventanaAlumnoAgregar, 
+                e.getMessage(), 
+                "Error de Duplicado", 
+                JOptionPane.ERROR_MESSAGE);
         }
         return;
     }
@@ -628,9 +636,14 @@ public void actionPerformed(ActionEvent ae) {
 
     // ---- Sub-ventana: Eliminar Alumno ----
     if (ventanaAlumnoEliminar != null && ae.getSource() == ventanaAlumnoEliminar.getjButtonEliminarAlumnoVEliminar()) {
-        if (eliminarAlumno(ventanaAlumnoEliminar.getjTextFieldEliminarAlumnoVRut())) {
+
+        // ---- APLICA ESTOS CAMBIOS ----
+        try {
+            String rut = ventanaAlumnoEliminar.getjTextFieldEliminarAlumnoVRut();
+            eliminarAlumno(rut);
             ventanaAlumnoEliminar.mostrarjLabelAgregarAlumnoVExito();
-        } else {
+        } catch (EntidadNoEncontradaException e) {
+            // Capturamos nuestra excepción y notificamos al usuario.
             ventanaAlumnoEliminar.mostarjLabelEliminarAlumnoVNoExiste();
         }
         return;
@@ -662,7 +675,21 @@ public void actionPerformed(ActionEvent ae) {
         ventanaAsistencia.setVisible(true);
         return;
     }
-
+    
+    if (ventanaAsistenciaMenu != null && ae.getSource() == ventanaAsistenciaMenu.getjButtonMenuAsistenciaVAlertaAsistencia()){
+        ventanaAlertaInasistencia = new AlertaInasistenciaV();
+        
+        // Sensibilizar botones de la nueva ventana
+        ventanaAlertaInasistencia.getjButtonAlertaInasistenciaPBuscar().addActionListener(this);
+        ventanaAlertaInasistencia.getjButtonAlertaInasistenciaPCerrar().addActionListener(this);
+        
+        // Configuración y visualización
+        ventanaAlertaInasistencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ventanaAlertaInasistencia.setLocationRelativeTo(null); // Centrar la ventana
+        ventanaAlertaInasistencia.setVisible(true);
+        return;
+    }
+    
     // ---- Ventana de Gestión de Asistencia ----
     if (ventanaAsistencia != null && ae.getSource() == ventanaAsistencia.getjButtonGestionAsistenciaVCancelar()) {
         ventanaAsistencia.dispose();
@@ -833,8 +860,45 @@ public void actionPerformed(ActionEvent ae) {
         ventanaAsistenciaModificar.dispose();
         return;
     }
-
-
+    
+    if(ventanaAlertaInasistencia != null && ae.getSource() == ventanaAlertaInasistencia.getjButtonAlertaInasistenciaPBuscar()){
+        // 1. Obtener los valores de los spinners
+        int umbral = (int) ventanaAlertaInasistencia.getjSpinnerAlertaInasistenciaPUmbralFaltas().getValue();
+        int dias = (int) ventanaAlertaInasistencia.getjSpinnerAlertaInasistenciaPDias().getValue();
+        
+        // 2. Llamar a la lógica de negocio para obtener los datos
+        Map<Alumno, Integer> alumnosEncontrados = obtenerAlumnosConInasistenciaCronica(umbral, dias);
+        
+        // 3. Poblar la tabla con los resultados
+        JTable tablaResultados = ventanaAlertaInasistencia.getJTableResultados();
+        DefaultTableModel modelo = (DefaultTableModel) tablaResultados.getModel();
+        
+        // Limpiar resultados anteriores
+        modelo.setRowCount(0); 
+        
+        // Llenar con nuevos resultados
+        for (Map.Entry<Alumno, Integer> entry : alumnosEncontrados.entrySet()) {
+            Alumno alumno = entry.getKey();
+            Integer cantidadAusencias = entry.getValue();
+            Object[] fila = {
+                alumno.getRut(),
+                alumno.getNombre(),
+                alumno.getCurso(),
+                cantidadAusencias
+            };
+            modelo.addRow(fila);
+        }
+        
+        // 4. Actualizar el contador
+        ventanaAlertaInasistencia.getJLabelContador().setText(String.valueOf(alumnosEncontrados.size()));
+        
+        return;
+    }
+    
+    if(ventanaAlertaInasistencia != null && ae.getSource() == ventanaAlertaInasistencia.getjButtonAlertaInasistenciaPCerrar()){
+        ventanaAlertaInasistencia.dispose();
+        return;
+    }
     // 4: GESTIÓN DE REPORTES (GenerarReportesV y sub-ventanas)
 
     // ---- Menú de Reportes (se abre desde el menú de asistencia) ----
@@ -1080,19 +1144,14 @@ public void actionPerformed(ActionEvent ae) {
     }
     
     
-    private boolean insertarAlumno(String nombre, String curso, String rut){
-
-        if(this.mapaAlumnos.containsKey(rut)){
-            // hacer excepcion: la accion de la excepcion puede ser abrir una ventanaError que le pase por setText() el tipo de error, por ejemplo el prinln de esta linea
-            System.out.println("Error: Ya existe un alumno con el RUT " + rut);
-            return false;
+    private void insertarAlumno(String nombre, String curso, String rut) throws EntidadDuplicadaException {
+        if (this.mapaAlumnos.containsKey(rut)) {
+            // En lugar de devolver false, lanzamos una excepción clara.
+            throw new EntidadDuplicadaException("Ya existe un alumno con el RUT " + rut);
         }
-        
         Alumno nuevoAlumno = new Alumno(nombre, curso, rut);
-        
         this.mapaAlumnos.put(rut, nuevoAlumno);
-        System.out.println("El alumno " + nuevoAlumno.getNombre() + " se ha creado con exito.");
-        return true;
+        System.out.println("El alumno " + nuevoAlumno.getNombre() + " se ha creado con éxito.");
     }
     
     private void buscarAlumnoPorRut() throws IOException {
@@ -1107,18 +1166,14 @@ public void actionPerformed(ActionEvent ae) {
     System.out.println("Alumno: " + alumno.getNombre() + "| Curso: " + alumno.getCurso() + "| RUT: " + alumno.getRut());
     }
     
-    private boolean eliminarAlumno(String rut) {
+    private void eliminarAlumno(String rut) throws EntidadNoEncontradaException {
         if (rut == null || rut.trim().isEmpty()) {
-            return false;
+            throw new IllegalArgumentException("El RUT no puede ser nulo o vacío.");
         }
-
-        // Si no existe la clave, no hay a quién borrar
         if (!this.mapaAlumnos.containsKey(rut)) {
-            return false;
+            throw new EntidadNoEncontradaException("No se encontró un alumno con el RUT " + rut);
         }
-
-        Alumno eliminado = this.mapaAlumnos.remove(rut);
-        return true;
+        this.mapaAlumnos.remove(rut);
     }
    
     private void registrarAsistenciaDiaria() throws IOException {
@@ -1201,6 +1256,30 @@ public void actionPerformed(ActionEvent ae) {
         }
         
         return alumnosEncontrados;
+    }
+    
+    public Map<Alumno, Integer> obtenerAlumnosConInasistenciaCronica(int umbralFaltas, int diasHaciaAtras) {
+        Map<Alumno, Integer> alumnosEnRiesgo = new HashMap<>();
+        LocalDate fechaFin = LocalDate.now();
+        LocalDate fechaInicio = fechaFin.minusDays(diasHaciaAtras);
+
+        for (Alumno alumno : this.mapaAlumnos.values()) {
+            ArrayList<Asistencia> asistenciasEnRango = alumno.getAsistencia(fechaInicio, fechaFin);
+
+            int contadorAusencias = 0;
+            // Contar solo las ausencias injustificadas
+            for (Asistencia asistencia : asistenciasEnRango) {
+                if (asistencia.getEstado() == Asistencia.EstadoAsistencia.AUSENTE) {
+                    contadorAusencias++;
+                }
+            }
+
+            // si supera o iguala el umbral entonces se añade al mapa de resultados
+            if (contadorAusencias >= umbralFaltas) {
+                alumnosEnRiesgo.put(alumno, contadorAusencias);
+            }
+        }
+        return alumnosEnRiesgo;
     }
     
     private void gestionarReportes() throws IOException {
@@ -1363,7 +1442,6 @@ public void actionPerformed(ActionEvent ae) {
 
             if (r != null && r.equalsIgnoreCase(target)) {
                 p.setCursoJefatura(nuevo);
-                // opcional, mismo estilo de feedback que en eliminar:
                 System.out.println("Profesor con RUT " + target + " actualizado a curso " + nuevo + ".");
                 return true;
             }
@@ -1456,16 +1534,16 @@ public void actionPerformed(ActionEvent ae) {
     }
 
 
-    private Profesor buscarProfesorPorRut(String rut) {
+    private Profesor buscarProfesorPorRut(String rut) throws EntidadNoEncontradaException {
         if (rut == null || rut.trim().isEmpty()) {
-            return null;
+            throw new IllegalArgumentException("El RUT no puede ser nulo o vacío.");
         }
         for (Profesor p : this.listaProfesores) {
             if (p.getRut().equalsIgnoreCase(rut.trim())) {
                 return p;
             }
         }
-        return null;
+        throw new EntidadNoEncontradaException("No se encontró un profesor con el RUT " + rut);
     }
     
     // Utilidades
@@ -1487,7 +1565,7 @@ public void actionPerformed(ActionEvent ae) {
     private Alumno obtenerAlumnoPorRut(String rut) {
         return this.mapaAlumnos.get(rut);
     }
-    // lector enteros(¿estamos autorizados para usar try/catch? esto es materia de exceptions)
+    
     private int leerEntero()throws IOException{
         int opcion = Integer.parseInt(this.lectorConsola.readLine());
         return opcion;

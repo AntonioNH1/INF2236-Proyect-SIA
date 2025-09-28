@@ -37,9 +37,13 @@ public class GenerarAlumnoV extends javax.swing.JFrame {
 
         jLabel1.setText("Rut del Alumno:");
 
+        jButtonGenerarAlumnoVCrear.setBackground(new java.awt.Color(231, 231, 231));
         jButtonGenerarAlumnoVCrear.setText("Generar Reporte");
+        jButtonGenerarAlumnoVCrear.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jButtonGenerarAlumnoVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonGenerarAlumnoVCancelar.setText("Cancelar");
+        jButtonGenerarAlumnoVCancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

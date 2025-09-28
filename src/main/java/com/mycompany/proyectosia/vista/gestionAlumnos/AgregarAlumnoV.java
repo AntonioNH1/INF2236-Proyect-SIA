@@ -44,6 +44,7 @@ public class AgregarAlumnoV extends javax.swing.JFrame {
 
         jLabel1.setText("Esta es la ventana para agregar un alumno");
 
+        jButtonAgregarAlumnoVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonAgregarAlumnoVCancelar.setText("Cancelar");
         jButtonAgregarAlumnoVCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

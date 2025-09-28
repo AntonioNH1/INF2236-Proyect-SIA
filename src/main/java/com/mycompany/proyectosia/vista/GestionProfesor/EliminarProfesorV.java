@@ -53,6 +53,7 @@ public class EliminarProfesorV extends javax.swing.JFrame {
         jLabel3.setDoubleBuffered(true);
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jButtonEliminarProfesorVEliminar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonEliminarProfesorVEliminar.setText("Eliminar");
         jButtonEliminarProfesorVEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +61,7 @@ public class EliminarProfesorV extends javax.swing.JFrame {
             }
         });
 
+        jButtonEliminarProfesorVCancelar.setBackground(new java.awt.Color(231, 231, 231));
         jButtonEliminarProfesorVCancelar.setText("Cancelar");
         jButtonEliminarProfesorVCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
