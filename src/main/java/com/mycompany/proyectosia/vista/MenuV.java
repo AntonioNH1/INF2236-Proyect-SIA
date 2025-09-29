@@ -36,6 +36,8 @@ public class MenuV extends javax.swing.JFrame {
         jButtonMenuVGestionarAlumnos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Principal");
+        setName("Jframe"); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

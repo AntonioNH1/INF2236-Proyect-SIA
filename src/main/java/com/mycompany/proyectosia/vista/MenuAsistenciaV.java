@@ -36,6 +36,7 @@ public class MenuAsistenciaV extends javax.swing.JFrame {
         jButtonGenerarReportesV = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu De Asistencia");
 
         jLabel1.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

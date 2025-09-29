@@ -52,6 +52,7 @@ public class AgregarProfesorV extends javax.swing.JFrame {
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Agregar Profesor");
 
         jLabel1.setText("Nombre:");
 

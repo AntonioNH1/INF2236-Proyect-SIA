@@ -52,6 +52,7 @@ public class ModificarProfesorV extends javax.swing.JFrame {
         jButtonMenuModificarProfesorVCancelar1.setText("Cancelar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Modificar Profesor");
 
         jLabel3.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

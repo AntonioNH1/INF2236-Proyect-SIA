@@ -34,6 +34,7 @@ public class GenerarAlumnoV extends javax.swing.JFrame {
         jButtonGenerarAlumnoVCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Reporte Alumno");
 
         jLabel1.setText("Rut del Alumno:");
 

@@ -34,6 +34,7 @@ public class GenerarReportesV extends javax.swing.JFrame {
         jButtonReporteVCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Reporte");
 
         jLabel1.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
         jLabel1.setText("Generar Reportes de:");
@@ -65,8 +66,8 @@ public class GenerarReportesV extends javax.swing.JFrame {
                             .addComponent(jButtonReporteCursosVir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(120, 120, 120)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(128, Short.MAX_VALUE))
+                        .addComponent(jLabel1)))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

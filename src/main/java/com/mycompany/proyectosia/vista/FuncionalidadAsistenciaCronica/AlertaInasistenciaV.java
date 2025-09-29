@@ -43,6 +43,7 @@ public class AlertaInasistenciaV extends javax.swing.JFrame {
         jLabelContador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Alerta inasistencia cronica");
 
         jLabel1.setText("Número mínimo de ausencias:");
 
@@ -143,7 +144,7 @@ public class AlertaInasistenciaV extends javax.swing.JFrame {
         jLabel4.setBackground(new java.awt.Color(153, 153, 153));
         jLabel4.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Alerta de insasistencia cronica");
+        jLabel4.setText("Alerta de inasistencia cronica");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButtonAlertaInasistenciaPCerrar.setBackground(new java.awt.Color(231, 231, 231));

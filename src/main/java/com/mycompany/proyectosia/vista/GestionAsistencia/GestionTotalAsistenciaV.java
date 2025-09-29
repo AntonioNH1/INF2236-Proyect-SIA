@@ -48,6 +48,7 @@ public class GestionTotalAsistenciaV extends javax.swing.JFrame {
         jComboBoxGestionTotalAsistenciaVCurso = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema De Asistencia");
 
         jTextFieldGestionTotalAsistenciaVFecha.setText("dd-mm-yyyy");
         jTextFieldGestionTotalAsistenciaVFecha.addActionListener(new java.awt.event.ActionListener() {

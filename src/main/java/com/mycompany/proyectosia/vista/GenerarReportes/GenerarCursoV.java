@@ -35,6 +35,7 @@ public class GenerarCursoV extends javax.swing.JFrame {
         jButtonGenerarReporteVCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Reporte Curso");
 
         jLabel1.setText("Curso:");
 

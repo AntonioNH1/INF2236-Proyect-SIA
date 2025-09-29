@@ -37,6 +37,7 @@ public class ModificarFechaAsistenciaV extends javax.swing.JFrame {
         jPanelModificarFechaAsistenciaVPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Modificar Asistencia");
 
         jLabel3.setBackground(new java.awt.Color(153, 153, 153));
         jLabel3.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N

@@ -39,6 +39,7 @@ public class InicioSesionV extends javax.swing.JFrame {
         jPanelPrincipalLogin = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inicio Sesion");
 
         jLabel3.setBackground(new java.awt.Color(153, 153, 153));
         jLabel3.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N

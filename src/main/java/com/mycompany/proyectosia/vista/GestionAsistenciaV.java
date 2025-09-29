@@ -34,6 +34,7 @@ public class GestionAsistenciaV extends javax.swing.JFrame {
         jButtonGestionAsistenciaVModificarFechaAsistencia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu De Asistencia");
 
         jLabel3.setBackground(new java.awt.Color(153, 153, 153));
         jLabel3.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
