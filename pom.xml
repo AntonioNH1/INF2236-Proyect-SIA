@@ -45,5 +45,5 @@
             </plugin>
         </plugins>
     </build>
-
+    <name>INF2236 Proyecto - Sistema_Asistencia_Escolar</name>
 </project>

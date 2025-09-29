@@ -1,10 +1,13 @@
 
-package com.mycompany.proyectosia;
+package com.mycompany.proyectosia.modelo;
 
 /**
  *
  * @author geoff
  */
+import com.mycompany.proyectosia.controlador.SistemaAsistenciaEscolar;
+import com.mycompany.proyectosia.modelo.Asistencia;
+import com.mycompany.proyectosia.modelo.Alumno;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

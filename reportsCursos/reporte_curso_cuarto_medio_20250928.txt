@@ -1,0 +1,12 @@
+=========================
+Reporte de asistencia por curso
+Generado: 28/09/2025
+=========================
+Curso: Cuarto Medio
+Periodo: 01/01/1900 a 01/01/3000
+
+RUT          Alumno                    P/A/J
+12           aaa                       0/0/0
+
+Totales del curso -> Presentes: 0 | Ausentes: 0 | Justificados: 0
+=========================

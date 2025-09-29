@@ -1,4 +1,4 @@
-package com.mycompany.proyectosia;
+package com.mycompany.proyectosia.modelo;
 import java.time.LocalDate;
 
 public class Asistencia
@@ -10,7 +10,7 @@ public class Asistencia
 		setFecha(fecha);
 		setEstado(estado);
 	}
-	
+        
     // Getters y setters
     public LocalDate getFecha() {
         return fecha; 
