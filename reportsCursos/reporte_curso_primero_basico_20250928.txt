@@ -1,0 +1,21 @@
+=========================
+Reporte de asistencia por curso
+Generado: 28/09/2025
+=========================
+Curso: primero basico
+Periodo: 01/01/1900 a 01/01/3000
+
+RUT          Alumno                    P/A/J
+21.101.006-6 Antonia Diaz              1/0/1
+21.101.007-7 Benjamin Silva            1/1/0
+21.101.008-8 Camila Fuentes            0/1/1
+21.101.010-0 Constanza Mella           1/1/0
+21.101.003-3 Diego Campos              1/0/1
+21.101.009-9 Ignacio Torres            1/0/1
+21.101.005-5 Lucas Morales             0/1/1
+21.101.001-1 Matias Rojas              1/1/0
+21.101.002-2 Sofia Alvarez             0/1/1
+21.101.004-4 Valentina Herrera         1/1/0
+
+Totales del curso -> Presentes: 7 | Ausentes: 7 | Justificados: 6
+=========================

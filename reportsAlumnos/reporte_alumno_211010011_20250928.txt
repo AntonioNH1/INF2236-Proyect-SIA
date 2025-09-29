@@ -2,10 +2,12 @@
 Reporte de asistencia por alumno
 Generado: 28/09/2025
 =========================
-Alumno: aaa (12) - Curso: Cuarto medio
+Alumno: Matias Rojas (21.101.001-1) - Curso: Primero basico
 Periodo: 01/01/1900 a 01/01/3000
 
 Fecha         Estado
+05/05/2025    PRESENTE
+06/05/2025    AUSENTE
 
-Totales -> Presentes: 0 | Ausentes: 0 | Justificados: 0
+Totales -> Presentes: 1 | Ausentes: 1 | Justificados: 0
 =========================

@@ -1,3 +1,8 @@
-11.111.111-1;Carlos Araya;Cuarto basico
-12.222.333-2;Constanza Reyes;Segundo medio
-15.151.151-1;Cristobal Morales;Quinto basico
+11.200.001-1;Carlos Araya;Primero basico
+11.200.002-2;Maria Gonzalez;Segundo basico
+11.200.004-4;Pedro Munoz;Cuarto basico
+11.200.005-5;Daniela Rivas;Quinto basico
+11.200.007-7;Jorge Perez;Septimo basico
+11.200.008-8;Paula Herrera;Octavo basico
+11.200.201-1;Ricardo Silva;Primero medio
+11.200.203-3;Carolina Castro;Tercero medio

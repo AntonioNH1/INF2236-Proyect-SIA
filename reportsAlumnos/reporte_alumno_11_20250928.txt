@@ -2,10 +2,17 @@
 Reporte de asistencia por alumno
 Generado: 28/09/2025
 =========================
-Alumno: fe (11) - Curso: Quinto basico
+Alumno: Camilo Ceferino (11) - Curso: Quinto basico
 Periodo: 01/01/1900 a 01/01/3000
 
 Fecha         Estado
+19/09/2025    AUSENTE
+20/09/2025    AUSENTE
+21/09/2025    AUSENTE
+22/09/2025    AUSENTE
+24/09/2025    PRESENTE
+26/09/2025    PRESENTE
+27/09/2025    AUSENTE
 
-Totales -> Presentes: 0 | Ausentes: 0 | Justificados: 0
+Totales -> Presentes: 2 | Ausentes: 5 | Justificados: 0
 =========================
